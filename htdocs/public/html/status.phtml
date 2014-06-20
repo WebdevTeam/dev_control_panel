@@ -1,0 +1,280 @@
+<html>
+
+	<head>
+		<link rel="stylesheet" type="text/css" media="screen" href="public/css/workless/minified.css.php" />
+		<link rel="stylesheet" type="text/css" media="screen" href="public/css/styles.css" />
+		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+
+		<script type="text/javascript">
+			$( document ).ready(function() {
+				$("#go").click(function() 
+				{
+					var ticket=$("#ticket").val();
+					var url = "http://trac.worldstores.co.uk/ticket/" + ticket;
+					var win = window.open(url, '_blank');
+           			win.focus();
+				});
+
+
+				$(".repository_dropdown").click(function() 
+				{
+					var table_id = $(this).attr("table_id");
+					$("#"+table_id).toggle();
+				});
+			});
+		</script>
+	
+	</head>
+	
+	<body>
+		<!-- wrapper -->
+		<section class="boxed">
+
+			<!-- main -->
+			<section id="main">
+
+				<!-- header -->
+				<header class="bg_shadow">
+				<h1>Dev Control Panel</h1>
+				</header>
+				<!-- /header -->
+
+			<div class="one_full">
+			<form>
+			<input type="text" name="ticket" id="ticket" size="20" placeholder="Ticket No."> <input type="button" name="go" id="go"  value="GO">
+			</form>
+			</div>
+				<?php
+				foreach($local_sites as $type => $sites)
+				{
+
+				?>
+
+				<div class="one_full">
+					<h2 class="repository_dropdown" table_id="<?php echo $type;?>"><?php echo (isset($trunk[$type]) ? $trunk[$type]['name'] : $type);?></h2>
+					<table id="<?php echo $type;?>" class="table-striped" style="display:none;">
+						<thead>
+							<tr>
+							<th>Domain</th>
+							<th></th>
+							<th>Branch</th>
+							<th>DB</th>
+							<th>Port</th>
+							<th>Ticket</th>
+							</tr>
+						</thead>
+
+						<tbody>
+				<?php
+				if(isset($sites->trunk))
+				foreach($sites->trunk as $l_site)
+				{
+					$admin_url = ($type=='c' ? $l_site->domain : $l_site->domain . '/admin.php');
+					$trunk_url = (isset($trunk[$type]) ? $trunk[$type]['trunk_url'] : "http://svn.worldstores.co.uk/");
+					$branch_url = (preg_match("/svn.worldstores.co.uk/i", $l_site->branch) ? $l_site->branch : (isset($trunk[$type]) ? $trunk[$type]['branch_url'] . $l_site->branch : "http://svn.worldstores.co.uk/"));
+				?>
+							<tr>
+								<td class="title">
+									<a href="http://dev.<?php echo $l_site->domain; ?>"  target="_blank"><?php echo $l_site->domain; ?></a>
+								</td>
+								<td class="admin">
+									<a href="http://dev.<?php echo $admin_url; ?>" target="_blank">admin</a>
+								</td>
+								<td class="branch">
+									<span><a href="<?php echo $branch_url; ?>" target="_blank"><?php echo $l_site->branch; ?></a></span>
+								</td>
+								<td>
+									<span><?php echo $l_site->db; ?></span>
+								</td>
+								<td>
+									<a href="http://dev.<?php echo $l_site->domain; ?>/admin.php" target="_blank"><?php echo $l_site->port; ?></a>
+								</td>
+								<td>
+									<a href="http://trac.worldstores.co.uk/ticket/<?php echo $l_site->ticket; ?>" target="_blank"><?php echo $l_site->ticket; ?></a>
+								</td>
+							</tr>
+				<?php
+				}
+				?>
+				<?php
+				if(isset($sites->site))
+				foreach($sites->site as $l_site)
+				{
+					$admin_url = ($type=='c' ? $l_site->domain : $l_site->domain . '/admin.php');
+					$trunk_url = (isset($trunk[$type]) ? $trunk[$type]['trunk_url'] : "http://svn.worldstores.co.uk/");
+					$branch_url = (preg_match("/svn.worldstores.co.uk/i", $l_site->branch) ? $l_site->branch : (isset($trunk[$type]) ? $trunk[$type]['branch_url'] . $l_site->branch : "http://svn.worldstores.co.uk/"));
+				?>
+							<tr>
+								<td class="title">
+									<a href="http://dev.<?php echo $l_site->domain; ?>"  target="_blank"><?php echo $l_site->domain; ?></a>
+								</td>
+								<td class="admin">
+									<a href="http://dev.<?php echo $admin_url; ?>" target="_blank">admin</a>
+								</td>
+								<td class="branch">
+									<span><a href="<?php echo $branch_url; ?>" target="_blank"><?php echo $l_site->branch; ?></a></span>
+								</td>
+								<td>
+									<span><?php echo $l_site->db; ?></span>
+								</td>
+								<td>
+									<a href="http://dev.<?php echo $l_site->domain; ?>/admin.php" target="_blank"><?php echo $l_site->port; ?></a>
+								</td>
+								<td>
+									<a href="http://trac.worldstores.co.uk/ticket/<?php echo $l_site->ticket; ?>" target="_blank"><?php echo $l_site->ticket; ?></a>
+								</td>
+							</tr>
+				<?php
+				}
+				?>
+						</tbody>
+					</table>
+				</div>
+				<?php
+				}
+				?>
+
+				<div class="one_full">
+					<h2 class="repository_dropdown" table_id="Webdev">Webdev</h2>
+					<table id="Webdev" class="table-striped" style="display:none;">
+						<thead>
+							<tr>
+								<th>Site</th>
+								<th></th>
+								<th>Branch</th>
+								<th>Revision</th>
+								<th>Last Updated</th>
+							</tr>
+						</thead>
+
+						<tbody>
+				<?php
+				foreach($webdevsites as $w_site)
+				{
+				?>
+							<tr>
+								<td class="title">
+									<a href="http://test.dave.<?php echo $w_site->testsite; ?>.webdev"  target="_blank">usman.<?php echo $w_site->testsite; ?>.webdev</a>
+								</td>
+								<td class="admin">
+									<a href="http://test.dave.<?php echo $w_site->testsite; ?>.webdev/admin.php" target="_blank">admin</a>
+								</td>
+								<td class="branch">
+									<span><?php echo $w_site->branch; ?></span>
+								</td>
+								<td>
+									<span><?php if(isset($w_site->revision)){echo $w_site->revision;}else{echo "-";} ?></span>
+								</td>
+								<td>
+									<span><?php echo date('H:i:s dS M Y (l)',($w_site->last_updated)); ?></span>
+								</td>
+							</tr>
+				<?php
+				}
+				?>
+						</tbody>
+					</table>
+				</div>
+
+				<div class="one_full">
+					<h2>**LIVE [Central Admin]**</h2>
+
+					<table class="table-striped">
+						<thead>
+							<tr>
+								<th>Site</th>
+								<th>Admin</th>
+								<th>Repo</th>
+							</tr>
+						</thead>
+
+				<?php
+				$i = 0;
+				foreach($top_livesites as $s=>$l_site)
+				{
+					$i++;
+				?>
+							<tr>
+								<form method="POST" name="admin_form_1_<?php echo $i;?>" action="https://<?php echo $l_site->url;?>/admin/admin_login.php" target="_blank">
+								<input type="hidden" name="login" value="admin">
+								<input type="hidden" name="subuser" value="<?php echo (isset($l_site->sub_user) ? $l_site->sub_user : $sub_user );?>">
+								<input type="hidden" name="password" value="<?php echo (isset($l_site->sub_pass) ? $l_site->sub_pass : $sub_pass );?>">
+								<input type="hidden" name="website_id" value="<?php echo $l_site->website_id;?>">
+								<input type="hidden" name="return_page" value="/admin/admin_login.php">
+								<input type="hidden" name="operation" value="login">
+									<td class="title">
+										<?php echo $s;?>
+									</td>
+									<td class="admin">
+										<a href="#" target="_blank" onclick="document.forms['admin_form_1_<?php echo $i;?>'].submit();return false;">**ADMIN**</a>
+									</td>
+									<td class="branch">
+										<span>http://svn.worldstores.co.uk/centraladmin/trunk</span>
+									</td>
+								</form>
+							</tr>
+				<?php
+				}
+				?>
+
+						<tbody>
+
+						</tbody>
+					</table>
+				<div class="one_full">
+					<h2>**LIVE**</h2>
+
+					<table class="table-striped">
+						<thead>
+							<tr>
+								<th>Site</th>
+								<th>Admin</th>
+								<th>Repo</th>
+							</tr>
+						</thead>
+				<?php
+				$i = 0;
+				foreach($livesites as $s=>$l_site)
+				{
+					$i++;
+				?>
+							<tr>
+								<form method="POST" name="admin_form_2_<?php echo $i;?>" action="https://<?php echo $l_site->url;?>/admin/admin_login.php" target="_blank">
+								<input type="hidden" name="login" value="admin">
+								<input type="hidden" name="subuser" value="<?php echo (isset($l_site->sub_user) ? $l_site->sub_user : $sub_user );?>">
+								<input type="hidden" name="password" value="<?php echo (isset($l_site->sub_pass) ? $l_site->sub_pass : $sub_pass );?>">
+								<input type="hidden" name="website_id" value="<?php echo $l_site->website_id;?>">
+								<input type="hidden" name="return_page" value="/admin/admin_login.php">
+								<input type="hidden" name="operation" value="login">
+									<td class="title">
+										<a href="http://<?php echo $l_site->url;?>" target="_blank"><?php echo $s;?></a>
+									</td>
+									<td class="admin">
+										<a href="#" target="_blank" onclick="document.forms['admin_form_2_<?php echo $i;?>'].submit();return false;">**ADMIN**</a>
+									</td>
+									<td class="branch">
+										<span><?php echo $l_site->repo;?></span>
+									</td>
+								</form>
+							</tr>
+				<?php
+				}
+				?>
+
+						<tbody>
+
+						</tbody>
+					</table>
+
+
+				</div>
+
+			</section>
+			<!-- /main -->
+
+		</section>
+		<!-- /wrapper -->
+
+	</body>
+
+</html>
