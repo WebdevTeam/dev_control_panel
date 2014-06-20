@@ -19,7 +19,7 @@
 				$(".repository_dropdown").click(function() 
 				{
 					var table_id = $(this).attr("table_id");
-					$("#"+table_id).toggle();
+					$("#"+table_id).fadeToggle();
 				});
 
 				$("#ticket").keypress(function(event)
@@ -30,6 +30,17 @@
 				        $("#go").click();
 				    }
 				});
+
+				if (window.addEventListener) 
+				{
+					window.addEventListener("keydown", function(e) 
+					{
+						if (e.keyCode == "68" && e.ctrlKey == true)
+						{
+							$("#ticket").select();
+						}
+					}, true);
+				}
 			});
 		</script>
 	
