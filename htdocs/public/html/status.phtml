@@ -21,6 +21,15 @@
 					var table_id = $(this).attr("table_id");
 					$("#"+table_id).toggle();
 				});
+
+				$("#ticket").keypress(function(event)
+				{
+				    if(event.keyCode == 13)
+				    {
+				        event.preventDefault();
+				        $("#go").click();
+				    }
+				});
 			});
 		</script>
 	
@@ -41,7 +50,8 @@
 
 			<div class="one_full">
 			<form>
-			<input type="text" name="ticket" id="ticket" size="20" placeholder="Ticket No."> <input type="button" name="go" id="go"  value="GO">
+				<input type="text" name="ticket" id="ticket" size="20" placeholder="Ticket No."> 
+				<input type="button" name="go" id="go"  value="GO">
 			</form>
 			</div>
 				<?php
