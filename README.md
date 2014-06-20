@@ -1,4 +1,4 @@
-dev_control_panel
-=================
+WebDev Control Pangel
+=====================
 
 Control Panel for local dev environment
