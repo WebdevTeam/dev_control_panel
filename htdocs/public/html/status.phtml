@@ -10,7 +10,17 @@
 				$("#go").click(function() 
 				{
 					var ticket=$("#ticket").val();
-					var url = "http://trac.worldstores.co.uk/ticket/" + ticket;
+					//If entered value is int, assume it to be a ticket number
+					if(Math.floor(ticket) == ticket && $.isNumeric(ticket))
+					{
+						var url = "http://trac.worldstores.co.uk/ticket/" + ticket;
+					}
+					// Else assume, searching track
+					else
+					{
+						var url = "http://trac.worldstores.co.uk/search?q=" + ticket;
+					}
+					
 					var win = window.open(url, '_blank');
            			win.focus();
 				});
