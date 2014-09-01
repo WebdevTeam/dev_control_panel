@@ -3,13 +3,175 @@
 	<head>
 		<link rel="stylesheet" type="text/css" media="screen" href="public/css/workless/minified.css.php" />
 		<link rel="stylesheet" type="text/css" media="screen" href="public/css/styles.css" />
-		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
+		<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+		<script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
 
 		<script type="text/javascript">
+
+			function update_branch_list(repo)
+			{
+				$.ajax({
+					url: '/update_branch_list.php',
+					type: "POST",
+					async: false,
+					cache: false,
+					data: {
+						repo:$repo
+					},
+					success: function (data) {
+
+					}
+				});
+			}
+
+			function get_branch_list(repo)
+			{
+				var branch_select = '';
+				$.ajax({
+					url: '/get_branch_list.php',
+					type: "POST",
+					data: {
+						repo:$repo
+					},
+					success: function (data) {
+						if(data.substr(0,7)=='<select')
+						{
+							$('.branch_input').replaceWith(data)
+						}
+						else
+						{
+							alert("No branches found. Please  refresh the branch list and try again. Or enter the exact name of the branch");
+							$('.branch_input').replaceWith('<input type="text" class="branch_input" name="branch_input" id="branch_input" placeholder="Branch" title="Branch Name: Creating new branch, enter the name you would like without date at start and ticket number at end. OR the exact name of branch you want to checkout">');
+						}
+
+					}
+				});
+//				return branch_select;
+			}
+
+			function check_branch_options()
+			{
+				$new_branch = $('input:radio[name=new_branch]:checked').val();
+				if($new_branch != "")
+				{
+					$repo = $('#repository').val();
+
+					if($repo != '')
+					{
+						if($new_branch == 'n')
+						{
+							get_branch_list($repo);
+						}
+						else
+						{
+							$('.branch_input').replaceWith('<input type="text" class="branch_input" name="branch_input" id="branch_input" placeholder="Branch" title="Branch Name: Creating new branch, enter the name you would like without date at start and ticket number at end.">');
+						}
+
+						$('#project_oprtions_level_3').show();
+					}
+					else
+					{
+						$('#project_oprtions_level_3').hide();
+					}
+				}
+				else
+				{
+					$('#project_oprtions_level_3').hide();
+				}
+			}
+			$(function() {
+				$( document ).tooltip();
+			});
 			$( document ).ready(function() {
+
+				check_branch_options();
+
+				$('#refresh_branch_list_all').click(function()
+				{
+					$repo = $('#repository').val();
+					update_branch_list($repo);
+				});
+
+				$('.delete_project').click(function()
+				{
+					var port = $(this).attr('id');
+					var domain = $(this).attr('domain');
+					if (confirm('Are you sure you want to delete this domain ' + domain + '?'))
+					{
+						$.ajax({
+							url: '/end_project.php',
+							type: "POST",
+							data: {
+								port:port
+							},
+							success: function (data) {
+								if (data.match("^tab 1 of window id"))
+								{
+									alert('Please go to your terminal to complete the rest of process');
+								}
+								else
+								{
+									alert('Not able to open new terminal. Please try again or try run the command in terminal manually');
+								}
+
+							}
+						});
+					}
+				});
+
+				$('#create_project').click(function()
+				{
+					var domain = $('#domain').val();
+					var repository = $('#repository').val();
+					var branch = $('#branch_input').val();
+					var ticket_number = $('#ticket_number').val();
+					var database = $('#database').val();
+					var host = $('#host').val();
+					var commit_message = $('#commit_message').val();
+//					if(domain=='' || repository=='' || branch=='' || ticket_number=='' )
+//					{
+//						alert('Fill in all fields');
+//						return false;
+//					}
+					if (confirm('Are you sure you want to delete this?')) {
+						$.ajax({
+							url: '/new_project.php',
+							type: "POST",
+							data: {
+								domain:domain,
+								repository:repository,
+								domain:domain,
+								branch:branch,
+								ticket_number:ticket_number,
+								database:database,
+								host:host,
+								commit_message:commit_message
+							},
+							success: function (data) {
+								if (data.match("^tab 1 of window id"))
+								{
+									alert('Please go to your terminal to complete the rest of process');
+								}
+								else
+								{
+									alert('Not able to open new terminal. Please try again or try run the command in terminal manually');
+								}
+							}
+						});
+					}
+				});
+
 				$("#go").click(function() 
 				{
 					var ticket=$("#ticket").val();
+
+					//Check if the ticket number starts with #. (if it does, substring  and slice would be same)
+					if(ticket.slice(0,1) == '#')
+					{
+						ticket = ticket.slice(1);
+					}
+
 					//If entered value is int, assume it to be a ticket number
 					if(Math.floor(ticket) == ticket && $.isNumeric(ticket))
 					{
@@ -78,11 +240,50 @@
 				<!-- /header -->
 
 			<div class="one_full">
-			<form>
-				<input type="text" name="ticket" id="ticket" size="20" placeholder="Ticket No."> 
-				<input type="button" name="go" id="go"  value="GO">
-			</form>
-			</div>
+				<form>
+					<input type="text" name="ticket" id="ticket" size="20" placeholder="Ticket No.">
+					<input type="button" name="go" id="go"  value="GO">
+				</form>
+				</div>
+
+				<div class="one_full">
+					<h2 class="repository_dropdown" table_id="new_project">New Project</h2>
+					<div id="new_project" style="display:none;">
+						New Branch <input type="radio" name="new_branch" value="y" onclick="check_branch_options();">
+						Existing Branch <input type="radio" name="new_branch" value="n" onclick="check_branch_options();">
+
+						<br>
+						<select name="repository" id="repository" title="Repository" onchange="check_branch_options();">
+							<option value="">Repository...</option>
+							<option value="c">Central Admin</option>
+							<option value="k">SkuBase</option>
+							<option value="p">PrivateSale</option>
+							<option value="s">SiteBase</option>
+							<option value="l">LogisticAPI</option>
+							<option value="t">TMO</option>
+						</select>
+						<a id="refresh_branch_list_all" href="javascript: return false;">Refresh</a>
+						<div id="project_oprtions_level_3" style="display:none;">
+							<br>
+							<input type="text" name="domain" id="domain" placeholder="Domain"  title="Domain Name: Desired domain you would like to have for this project">
+							<br>
+							<input type="text" class="branch_input" name="branch_input" id="branch_input" placeholder="Branch" title="Branch Name: Creating new branch, enter the name you would like without date at start and ticket number at end. OR the exact name of branch you want to checkout">
+							<br>
+							<input type="text" name="ticket_number" id="ticket_number" placeholder="Ticket No." title="Ticket Number: Refers to the ticket for which you creating this branch for">
+							<br>
+							<input type="text" name="database" id="database" placeholder="Database name" title="Database Name">
+							<select name="host" id="host" title="Database Host">
+								<option value="">Database Host...</option>
+								<option value="local">Local Host</option>
+								<option value="webdev">WebDev</option>
+								</select>
+							<br>
+							<textarea id="commit_message" name="name" placeholder="Commit Message" rows="8" cols="97"></textarea>
+							<br>
+							<input type="button" id="create_project" name="Submit" value="Create">
+						</div>
+					</div>
+				</div>
 				<?php
 				foreach($local_sites as $type => $sites)
 				{
@@ -100,6 +301,7 @@
 							<th>DB</th>
 							<th>Port</th>
 							<th>Ticket</th>
+							<th>Delete Project</th>
 							</tr>
 						</thead>
 
@@ -129,7 +331,10 @@
 									<a href="http://dev.<?php echo $l_site->domain; ?>/admin.php" target="_blank"><?php echo $l_site->port; ?></a>
 								</td>
 								<td>
-									<a href="http://trac.worldstores.co.uk/ticket/<?php echo $l_site->ticket; ?>" target="_blank"><?php echo $l_site->ticket; ?></a>
+
+								</td>
+								<td>
+
 								</td>
 							</tr>
 				<?php
@@ -161,6 +366,17 @@
 								</td>
 								<td>
 									<a href="http://trac.worldstores.co.uk/ticket/<?php echo $l_site->ticket; ?>" target="_blank"><?php echo $l_site->ticket; ?></a>
+								</td>
+								<td>
+									<?php
+									if($l_site->ticket > 0)
+									{
+										echo "<a class='delete_project' id='{$l_site->port}' domain='{$l_site->domain}' href='javascript: return false;'>{$l_site->port}</a>";
+									}
+									else{
+										echo "";
+									}
+									?>
 								</td>
 							</tr>
 				<?php
