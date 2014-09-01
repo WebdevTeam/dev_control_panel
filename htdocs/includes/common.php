@@ -1,7 +1,8 @@
 <?php
 date_default_timezone_set('Europe/London');
 
-if(file_exists(dirname(__FILE__) . '/user.config.php')){
+if(file_exists(dirname(__FILE__) . '/user.config.php'))
+{
 	require_once 'user.config.php';
 }
 else

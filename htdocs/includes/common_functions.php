@@ -1,13 +1,15 @@
 <?php
 function objectToArray($d)
 {
-	if (is_object($d)) {
+	if (is_object($d)) 
+	{
 		// Gets the properties of the given object
 		// with get_object_vars function
 		$d = get_object_vars($d);
 	}
 
-	if (is_array($d)) {
+	if (is_array($d)) 
+	{
 		/*
 		* Return array converted to object
 		* Using __FUNCTION__ (Magic constant)
@@ -15,14 +17,16 @@ function objectToArray($d)
 		*/
 		return array_map(__FUNCTION__, $d);
 	}
-	else {
+	else 
+	{
 		// Return array
 		return $d;
 	}
 }
 function arrayToObject($d)
 {
-	if (is_array($d)) {
+	if (is_array($d)) 
+	{
 		/*
 		* Return array converted to object
 		* Using __FUNCTION__ (Magic constant)
@@ -30,7 +34,8 @@ function arrayToObject($d)
 		*/
 		return (object) array_map(__FUNCTION__, $d);
 	}
-	else {
+	else 
+	{
 		// Return object
 		return $d;
 	}
