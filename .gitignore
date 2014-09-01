@@ -1,3 +1,5 @@
 logfiles/
 logs/
 htdocs/includes/user.config.php
+.idea/
+test.php
