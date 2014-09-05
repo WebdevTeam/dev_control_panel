@@ -1,8 +1,8 @@
 <html>
 
 	<head>
-		<link rel="stylesheet" type="text/css" media="screen" href="public/css/workless/minified.css.php" />
-		<link rel="stylesheet" type="text/css" media="screen" href="public/css/styles.css" />
+		<link rel="stylesheet" type="text/css" media="screen" href="/public/css/workless/minified.css.php" />
+		<link rel="stylesheet" type="text/css" media="screen" href="/public/css/styles.css" />
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
 		<script src="//code.jquery.com/jquery-1.10.2.js"></script>
 		<script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
@@ -19,55 +19,24 @@
 
 				<!-- header -->
 				<header class="bg_shadow">
-				<h1>Dev Control Panel</h1>
-				</header>
-				<!-- /header -->
 
-			<div class="one_full">
-				<form>
+				
+				<div style="float: left">
 					<input type="text" name="ticket" id="ticket" size="20" placeholder="Ticket No.">
 					<input type="button" name="go" id="go"  value="GO">
-				</form>
+				</div>
+				<div style="float: right">
+					<a href="/public/html/new_project.html" class="button green">Create new project</a>
 				</div>
 
-				<div class="one_full">
-					<h2 class="repository_dropdown" table_id="new_project">New Project</h2>
-					<div id="new_project" style="display:none;">
-						New Branch <input type="radio" name="new_branch" value="y" onclick="check_branch_options();">
-						Existing Branch <input type="radio" name="new_branch" value="n" onclick="check_branch_options();">
-
-						<br>
-						<select name="repository" id="repository" title="Repository" onchange="check_branch_options();">
-							<option value="">Repository...</option>
-							<option value="c">Central Admin</option>
-							<option value="k">SkuBase</option>
-							<option value="p">PrivateSale</option>
-							<option value="s">SiteBase</option>
-							<option value="l">LogisticAPI</option>
-							<option value="t">TMO</option>
-						</select>
-						<a id="refresh_branch_list_all" href="javascript: return false;">Refresh</a>
-						<div id="project_oprtions_level_3" style="display:none;">
-							<br>
-							<input type="text" name="domain" id="domain" placeholder="Domain"  title="Domain Name: Desired domain you would like to have for this project">
-							<br>
-							<input type="text" class="branch_input" name="branch_input" id="branch_input" placeholder="Branch" title="Branch Name: Creating new branch, enter the name you would like without date at start and ticket number at end. OR the exact name of branch you want to checkout">
-							<br>
-							<input type="text" name="ticket_number" id="ticket_number" placeholder="Ticket No." title="Ticket Number: Refers to the ticket for which you creating this branch for">
-							<br>
-							<input type="text" name="database" id="database" placeholder="Database name" title="Database Name">
-							<select name="host" id="host" title="Database Host">
-								<option value="">Database Host...</option>
-								<option value="local">Local Host</option>
-								<option value="webdev">WebDev</option>
-								</select>
-							<br>
-							<textarea id="commit_message" name="name" placeholder="Commit Message" rows="8" cols="97"></textarea>
-							<br>
-							<input type="button" id="create_project" name="Submit" value="Create">
-						</div>
-					</div>
+				<div style="float: center">
+				<h1>Dev Control Panel</h1>
 				</div>
+
+
+				</header>
+				<!-- /header -->
+	
 				<?php
 				foreach($local_sites as $type => $sites)
 				{
@@ -79,51 +48,18 @@
 					<table id="<?php echo $type;?>" class="table-striped" style="display:none;">
 						<thead>
 							<tr>
-							<th>Domain</th>
-							<th></th>
-							<th>Branch</th>
-							<th>DB</th>
-							<th>Port</th>
-							<th>Ticket</th>
-							<th>Delete Project</th>
+								<th>Domain</th>
+								<th>Admin</th>
+								<th>Branch</th>
+								<th>DB</th>
+								<th>Port</th>
+								<th>Ticket</th>
+								<th></th>
 							</tr>
 						</thead>
 
 						<tbody>
-				<?php
-				if(isset($sites->trunk))
-				foreach($sites->trunk as $l_site)
-				{
-					$admin_url = ($type=='c' ? $l_site->domain : $l_site->domain . '/admin.php');
-					$trunk_url = (isset($trunk[$type]) ? $trunk[$type]['trunk_url'] : "http://svn.worldstores.co.uk/");
-					$branch_url = (preg_match("/svn.worldstores.co.uk/i", $l_site->branch) ? $l_site->branch : (isset($trunk[$type]) ? $trunk[$type]['branch_url'] . $l_site->branch : "http://svn.worldstores.co.uk/"));
-				?>
-							<tr>
-								<td class="title">
-									<a href="http://dev.<?php echo $l_site->domain; ?>"  target="_blank"><?php echo $l_site->domain; ?></a>
-								</td>
-								<td class="admin">
-									<a href="http://dev.<?php echo $admin_url; ?>" target="_blank">admin</a>
-								</td>
-								<td class="branch">
-									<span><a href="<?php echo $branch_url; ?>" target="_blank"><?php echo $l_site->branch; ?></a></span>
-								</td>
-								<td>
-									<span><?php echo $l_site->db; ?></span>
-								</td>
-								<td>
-									<a href="http://dev.<?php echo $l_site->domain; ?>/admin.php" target="_blank"><?php echo $l_site->port; ?></a>
-								</td>
-								<td>
 
-								</td>
-								<td>
-
-								</td>
-							</tr>
-				<?php
-				}
-				?>
 				<?php
 				if(isset($sites->site))
 				foreach($sites->site as $l_site)
@@ -132,36 +68,37 @@
 					$trunk_url = (isset($trunk[$type]) ? $trunk[$type]['trunk_url'] : "http://svn.worldstores.co.uk/");
 					$branch_url = (preg_match("/svn.worldstores.co.uk/i", $l_site->branch) ? $l_site->branch : (isset($trunk[$type]) ? $trunk[$type]['branch_url'] . $l_site->branch : "http://svn.worldstores.co.uk/"));
 				?>
-							<tr>
-								<td class="title">
-									<a href="http://dev.<?php echo $l_site->domain; ?>"  target="_blank"><?php echo $l_site->domain; ?></a>
-								</td>
-								<td class="admin">
-									<a href="http://dev.<?php echo $admin_url; ?>" target="_blank">admin</a>
-								</td>
-								<td class="branch">
-									<span><a href="<?php echo $branch_url; ?>" target="_blank"><?php echo $l_site->branch; ?></a></span>
-								</td>
-								<td>
-									<span><?php echo $l_site->db; ?></span>
-								</td>
-								<td>
-									<a href="http://dev.<?php echo $l_site->domain; ?>/admin.php" target="_blank"><?php echo $l_site->port; ?></a>
-								</td>
-								<td>
-									<a href="http://trac.worldstores.co.uk/ticket/<?php echo $l_site->ticket; ?>" target="_blank"><?php echo $l_site->ticket; ?></a>
-								</td>
-								<td>
-									<?php
-									if($l_site->ticket > 0)
-									{
-										echo "<a class='delete_project' id='{$l_site->port}' domain='{$l_site->domain}' href='javascript: return false;'>{$l_site->port}</a>";
-									}
-									else{
-										echo "";
-									}
-									?>
-								</td>
+					<tr>
+						<td class="title">
+							<a href="http://dev.<?php echo $l_site->domain; ?>"  target="_blank"><?php echo $l_site->domain; ?></a>
+						</td>
+						<td class="admin">
+							<a href="http://dev.<?php echo $admin_url; ?>" target="_blank">admin</a>
+						</td>
+						<td class="branch">
+							<span><a href="<?php echo $branch_url; ?>" target="_blank"><?php echo $l_site->branch; ?></a></span>
+						</td>
+						<td>
+							<span><?php echo $l_site->db; ?></span>
+						</td>
+						<td>
+							<a href="http://dev.<?php echo $l_site->domain; ?>/admin.php" target="_blank"><?php echo $l_site->port; ?></a>
+						</td>
+						<td>
+							<a href="http://trac.worldstores.co.uk/ticket/<?php echo $l_site->ticket; ?>" target="_blank"><?php echo $l_site->ticket; ?></a>
+						</td>
+						<td>
+							<?php
+							if($l_site->ticket > 0)
+							{
+								echo "<a class='delete_project' id='{$l_site->port}' domain='{$l_site->domain}' href='javascript: return false;'>X</a>";
+							}
+							else
+							{
+								echo "<span class='middle'>-</span>";
+							}
+							?>
+						</td>
 							</tr>
 				<?php
 				}

@@ -44,7 +44,7 @@ table tr td.admin{
    width: 80px;
 }
 table tr td.branch{
-   width: 620px;
+   width: 550px;
 }
 
 
@@ -107,4 +107,14 @@ li.active a {
 {
   cursor: pointer; 
   cursor: hand;
+}
+
+.delete_project
+{
+  text-align: center;
+}
+
+.middle
+{
+  text-align: center;
 }

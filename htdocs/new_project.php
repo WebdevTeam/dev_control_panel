@@ -1,7 +1,7 @@
 <?php
 require_once './includes/common.php';
 
-$new_project = $path_bash_scripts . '.newproject.sh';
+$new_project = $path_bash_scripts . '/.newproject.sh';
 
 $domain = $_POST['domain'];
 $repository = $_POST['repository'];
