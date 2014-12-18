@@ -7,9 +7,9 @@
 		<script src="//code.jquery.com/jquery-1.10.2.js"></script>
 		<script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
 		<script src="/public/js/new_project.js"></script>
-	
+
 	</head>
-	
+
 	<body>
 		<!-- wrapper -->
 		<section class="boxed">
@@ -19,51 +19,54 @@
 
 				<!-- header -->
 				<header class="bg_shadow">
-				<h1>Create New Project</h1>
+				<h1><a href="/">Create New Project</a></h1>
 				</header>
 				<!-- /header -->
 
 			<div class="one_full">
-				
-				Repository: 
+
+				Repository:
 				<select name="repository" id="repository" title="Repository" onchange="check_branch_options();" autocomplete="off">
-					<option value="" selected>Please Select...</option>
 					<option value="c">Central Admin</option>
-					<option value="k">SkuBase</option>
+					<option value="k" selected>SkuBase</option>
 					<option value="p">PrivateSale</option>
 					<option value="s">SiteBase</option>
 					<option value="l">LogisticAPI</option>
 					<option value="t">TMO</option>
 				</select>
-			
-				
+
+
 				<br>
+				Domain:
 				<input type="text" name="domain" id="domain" placeholder="Domain"  title="Domain Name: Desired domain you would like to have for this project">
 				<br>
-				
+				Branch:
 				<input type="text" class="branch_input" name="branch_input" id="branch_input" placeholder="Branch Name" title="Branch Name: Creating new branch, enter the name you would like without date at start and ticket number at end. OR the exact name of branch you want to checkout">
 
 				<button id="refresh_branch_list_all" href="javascript: return false;" style="display: none">Refresh</button>
 
-				<input type="radio" name="new_branch" checked value="y" onclick="check_branch_options();" autocomplete="off"> New Branch 
+				<input type="radio" name="new_branch" checked value="y" onclick="check_branch_options();" autocomplete="off"> New Branch
 				--
-				<input type="radio" name="new_branch" value="n" onclick="check_branch_options();" autocomplete="off"> Existing Branch 
+				<input type="radio" name="new_branch" value="n" onclick="check_branch_options();" autocomplete="off"> Existing Branch
 				<br>
-				
 
+				Ticket Number:
 				<input type="text" name="ticket_number" id="ticket_number" placeholder="Ticket No." title="Ticket Number: Refers to the ticket for which you creating this branch for">
 				<br>
+				Database Name:
 				<input type="text" name="database" id="database" placeholder="Database name" title="Database Name">
+				<br>
+				Database Host:
 				<select name="host" id="host" title="Database Host">
-					<option value="">Database Host...</option>
 					<option value="local">Local Host</option>
-					<option value="webdev">WebDev</option>
+					<option value="webdev" selected>WebDev</option>
 				</select>
 				<br>
+				Commit Message:<br>
 				<textarea id="commit_message" name="name" placeholder="Commit Message" rows="8" cols="97"></textarea>
 				<br>
 				<input type="button" id="create_project" name="Submit" value="Create">
-				
+
 
 			</div>
 

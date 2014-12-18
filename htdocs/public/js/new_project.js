@@ -9,7 +9,7 @@ function update_branch_list(repo)
 		data: {
 			repo:repo
 		},
-		success: function (data) 
+		success: function (data)
 		{
 			if (data == "completed")
 			{
@@ -31,11 +31,11 @@ function get_branch_list(repo)
 	{
 		url: '/get_branch_list.php',
 		type: "POST",
-		data: 
+		data:
 		{
 			repo:repo
 		},
-		success: function (data) 
+		success: function (data)
 		{
 			if(data.substr(0,7)=='<select')
 			{
@@ -114,45 +114,62 @@ function check_branch_options()
 
 }
 
-$(document).ready(function() 
+$(document).ready(function()
 {
 	$(document).tooltip();
 	$('#create_project').click(function()
 	{
-		var domain = $('#domain').val();
-		var repository = $('#repository').val();
-		var branch = $('#branch_input').val();
-		var ticket_number = $('#ticket_number').val();
-		var database = $('#database').val();
-		var host = $('#host').val();
-		var commit_message = $('#commit_message').val();
+		var fields = Object.create(null);
+		fields["domain"] = {required: true, display_name: "Domain"};
+		fields["repository"] = {required: true, display_name: "Repository"};
+		fields["branch_input"] = {required: true, display_name: "Branch"};
+		fields["ticket_number"] = {required: true, display_name: "Ticket Number"};
+		fields["database"] = {required: true, display_name: "Database"};
+		fields["host"] = {required: true, display_name: "Host"};
+		fields["commit_message"] = {required: false, display_name: "Commit Message"};
 
-		if (confirm('Are you sure you want to create this project?')) 
+		var fail = false;
+		for(var field in fields)
+		{
+			if (!fail)
+			{
+				var value = $('#'+field).val();
+				if (typeof value != 'undefined' && value != "")
+				{
+					fields[field].value = value;
+				}
+				else if (!fields[field].required)
+				{
+					fields[field].value = "" ;
+				}
+				else
+				{
+					fail = true;
+					alert(fields[field].display_name + " must not be empty");
+				}
+			}
+		}
+
+		if (!fail && confirm('Are you sure you want to create this project?'))
 		{
 			$.ajax(
 			{
 				url: '/new_project.php',
 				type: "POST",
-				data: 
+				data:
 				{
-					domain:domain,
-					repository:repository,
-					domain:domain,
-					branch:branch,
-					ticket_number:ticket_number,
-					database:database,
-					host:host,
-					commit_message:commit_message
+					data: JSON.stringify(fields)
 				},
-				success: function (data) 
+				success: function (data)
 				{
-					if (data.match("^tab 1 of window id"))
+					result = JSON.parse(data);
+					if (result['status'].match("^tab 1 of window id"))
 					{
 						alert('Please go to your terminal to complete the rest of process');
 					}
 					else
 					{
-						alert('Not able to open new terminal. Please try again or try run the command in terminal manually');
+						alert('Not able to open new terminal. Please try again or run manually:\n\n' + result['command'] + '\n\n');
 					}
 				}
 			});
@@ -165,7 +182,7 @@ $(document).ready(function()
 		update_branch_list(repo);
 	});
 
-	// $('#repository').change(function () 
+	// $('#repository').change(function ()
 	// {
 	// 	if ($(this).val() == "")
 	// 	{
