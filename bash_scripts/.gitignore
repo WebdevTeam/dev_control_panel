@@ -1,0 +1,5 @@
+config/*
+!config/.config.example.sh
+!config/.cupdate_config.example.sh
+.idea/
+includes/.idea/

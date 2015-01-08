@@ -1,10 +1,10 @@
 <?php
-require_once './includes/common.php';
+require_once 'includes/common.php';
 
 $project = $path_bash_scripts . '/.branch_list.sh';
 $repo = $_POST['repo'];
 
-$sentinel_file = $_SERVER["DOCUMENT_ROOT"] . '../logs/update_complete';
+$sentinel_file = $_SERVER["DOCUMENT_ROOT"] . '../feeds/update_complete';
 
 //Remove any previous sentinels
 

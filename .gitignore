@@ -1,5 +1,8 @@
-logfiles/
 logs/
-htdocs/includes/user.config.php
 .idea/
-test.php
+bash_scripts/config/*
+!bash_scripts/config/.config.example.sh
+!bash_scripts/config/.cupdate_config.example.sh
+logfiles/
+feeds/
+htdocs/includes/user.config.php

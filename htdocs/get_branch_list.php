@@ -1,14 +1,22 @@
 <?php
-require_once './includes/common.php';
+require_once 'includes/common.php';
 
 $repo = $_POST['repo'];
 
-$xml_file = dirname ( __FILE__ ) . "/../logs/branch_list_" . $repo . ".xml";
-
+$xml_file = $_SERVER["DOCUMENT_ROOT"] . "../feeds/branch_list_" . $repo . ".xml";
 
 if(file_exists($xml_file))
 {
-	$branches = simplexml_load_file($xml_file);
+	if (filesize($xml_file) > 0)
+	{
+		$branches = simplexml_load_file($xml_file);
+	}
+	else
+	{
+		unlink($xml_file);
+		echo "file_not_found";
+		exit();
+	}
 
 	echo '<select class="branch_input" name="branch_input" id="branch_input" placeholder="Branch" title="Branch Name: Creating new branch, enter the name you would like without date at start and ticket number at end. OR the exact name of branch you want to checkout">';
 	echo '<option value="">Branch...</option>';

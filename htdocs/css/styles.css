@@ -1,0 +1,120 @@
+/** {
+  margin: 0;
+  padding: 0;
+}*/
+
+/*h2 {
+   font-family: Helvetica, Verdana, sans-serif;
+   font-size: 25px;
+   font-weight: bold;
+   color: #333;
+   margin: 20px;
+}*/
+
+/*table tr td{
+   font-family: Helvetica, Verdana, sans-serif;
+   font-size: 15px;
+   font-weight: normal;
+}
+
+table tr td a {
+    display:block;
+    height:100%;
+    line-height: 18px;
+    padding: 10px;
+}
+
+table tr td a:hover {
+  color: #777777;
+  background-color: #e5e5e5;
+}
+
+table tr td span {
+    line-height: 18px;
+    padding: 10px;
+}*/
+
+table tr td.title{
+   font-weight: bold;
+   width: 220px;
+}
+
+table tr td.admin{
+  text-align: center;
+   width: 80px;
+}
+table tr td.branch{
+   width: 550px;
+}
+
+
+/*nav {
+  margin: 25px 50px;
+}
+
+ul {
+  overflow: auto;
+  list-style-type: none;
+}
+
+li {
+  height: 25px;
+  float: left;
+  margin-right: 0px;
+  border-right: 1px solid #aaa;
+  padding: 0 20px;
+}
+
+li:last-child {
+  border-right: none;
+}
+
+li {
+  text-decoration: none;
+  color: #ccc;
+  font: 20px/1 Helvetica, Verdana, sans-serif;
+
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+li a {
+  text-decoration: none;
+  color: #ccc;
+  font: 20px/1 Helvetica, Verdana, sans-serif;
+
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+
+li a:hover {
+  color: #666;
+}
+
+li.active a {
+  font-weight: bold;
+  color: #333;
+}*/
+
+.repository_dropdown
+{
+  cursor: pointer;
+  cursor: hand;
+}
+
+/*.delete_project
+{
+  text-align: center;
+}
+
+.middle
+{
+  text-align: center;
+}*/

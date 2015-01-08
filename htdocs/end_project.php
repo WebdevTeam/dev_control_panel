@@ -1,5 +1,5 @@
 <?php
-require_once './includes/common.php';
+require_once 'includes/common.php';
 
 $end_project = $path_bash_scripts . '/.endproject.sh';
 $delete_port = (int)$_POST['port'];

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- <link rel="stylesheet" type="text/css" media="screen" href="/css/workless/minified.css.php" /> -->
+		<link rel="stylesheet" type="text/css" media="screen" href="/css/styles.css" />
+		<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css"> -->
+
+		<link rel="stylesheet" href="/components/bootstrap/dist/css/bootstrap.min.css">
+
+    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="/components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+		<script src="/js/status.js"></script>
+		<script src="/js/new_project.js"></script>
+
+	</head>
+	<body>
+
+		<!-- NAVIGATION BAR -->
+		<nav class="navbar navbar-inverse">
+		  <div class="container-fluid">
+		  		<div class="row">
+		  			<div class="col-md-5">
+					      <ul class="navbar-form navbar-left nav" role="search">
+					        <li>
+					        <div class="form-group">
+					          <input type="text" class="form-control"  id="ticket" placeholder="Trac No./Search">
+					        </div>
+					        <button id="go" type="submit" class="btn btn-default">GO</button>
+					        </li>
+					      </ul>
+
+		  			</div>
+				    <div class="col-md-5">
+						<span class="navbar-brand"><a href="/"><b>WEBDEV CONTROL PANEL</b></a></span>
+				    </div>
+
+					<div class="col-md-2">
+						<ul class="navbar-form navbar-right">
+							<li><a href="/html/new_project.html"><button type="button" class="btn btn-success">Create New Project</button></a></li>
+						</ul>
+					</div>
+		  		</div>
+		  </div>
+		</nav>
+		<!-- END NAVIGATION BAR -->
+
+		<header class="bg_shadow">
+			<h1>Create New Project</h1>
+		</header>
+		<div class="row">
+			<div class="col-md-8 col-sm-offset-1">
+				<div class="well">
+					<form class="form-horizontal">
+						<div class="form-group">
+							<label for="repository" class="col-sm-2 control-label">Repository</label>
+							<div class="col-sm-3">
+								<select class="form-control" name="repository" id="repository" title="Repository" onchange="check_branch_options();" autocomplete="off">
+									<option value="c">Central Admin</option>
+									<option value="k" selected>SkuBase</option>
+									<option value="p">PrivateSale</option>
+									<option value="s">SiteBase</option>
+									<option value="l">LogisticAPI</option>
+									<option value="t">TMO</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="domain" class="col-sm-2 control-label">Domain</label>
+							<div class="col-sm-5">
+								<input type="text" name="domain" id="domain" placeholder="Domain" >
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="branch_input" class="col-sm-2 control-label">Branch</label>
+							<div class="col-sm-5">
+								<input type="text" class="branch_input" name="branch_input" id="branch_input" placeholder="Branch Name">
+								<button id="refresh_branch_list_all" href="javascript: return false;" style="display: none">Refresh</button>
+
+								<input type="radio" name="new_branch" checked value="y" onclick="check_branch_options();" autocomplete="off"> New Branch
+								--
+								<input type="radio" name="new_branch" value="n" onclick="check_branch_options();" autocomplete="off"> Existing Branch
+
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="ticket_number" class="col-sm-2 control-label">Ticket No</label>
+							<div class="col-sm-5">
+								<input type="text" name="domain" id="ticket_number" placeholder="Domain" >
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="database" class="col-sm-2 control-label">Database Name</label>
+							<div class="col-sm-5">
+								<input type="text" name="database" id="database" placeholder="Database name" title="Database Name">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="commit_message" class="col-sm-2 control-label">Commit Message</label>
+							<div class="col-sm-5">
+							<textarea id="commit_message" name="name" placeholder="Commit Message" rows="2" cols="97"></textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-5 col-sm-offset-2">
+								<button id="create_project" class="btn btn-primary">Create Project</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>

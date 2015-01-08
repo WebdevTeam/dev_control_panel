@@ -1,8 +1,7 @@
 <?php
-require_once './includes/common.php';
+require_once 'includes/common.php';
 
 $new_project = $path_bash_scripts . '/.newproject.sh';
-
 
 
 $fields = json_decode($_POST['data']);

@@ -1,23 +1,27 @@
 <?php
-require_once './includes/common.php';
+require_once 'includes/common.php';
 
 asort($livesites_array);
 $top_livesites = arrayToObject($liveTopsites_array);
 $livesites = arrayToObject($livesites_array);
 
 //Get contents of current feed
-$logpath = "../logs/devsites.sitebase.log";
-$logcontents = file_get_contents($logpath, true);
-$old_format = objectToArray(json_decode($logcontents));
+$devsites_path = $_SERVER['DOCUMENT_ROOT'] . "../feeds/devsites";
 
-foreach ($old_format as $key => $value) 
+if (!file_exists($devsites_path))
 {
-	$new_format[strtolower($value['repo'])][strtolower($value['type'])][] = $value;
+	touch ($devsites_path);
 }
 
-$local_sites = arrayToObject($new_format);
+$devsites_contents = objectToArray(json_decode(file_get_contents($devsites_path, true)));
 
+foreach ($devsites_contents as $key => $value)
+{
+	$contents_array[strtolower($value['repo'])][strtolower($value['type'])][] = $value;
+}
+
+$local_sites = arrayToObject($contents_array);
 $webdevsites = array();
 
-include 'public/html/status.phtml';
+include 'html/status.phtml';
 

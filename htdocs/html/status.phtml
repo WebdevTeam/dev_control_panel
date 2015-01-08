@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- <link rel="stylesheet" type="text/css" media="screen" href="/css/workless/minified.css.php" /> -->
+		<link rel="stylesheet" type="text/css" media="screen" href="/css/styles.css" />
+		<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css"> -->
+
+		<link rel="stylesheet" href="/components/bootstrap/dist/css/bootstrap.min.css">
+
+    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="/components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+		<script src="/js/status.js"></script>
+
+	</head>
+
+	<body>
+
+		<!-- NAVIGATION BAR -->
+		<nav class="navbar navbar-inverse">
+		  <div class="container-fluid">
+		  		<div class="row">
+		  			<div class="col-md-5">
+					      <ul class="navbar-form navbar-left nav" role="search">
+					        <li>
+					        <div class="form-group">
+					          <input type="text" class="form-control"  id="ticket" placeholder="Trac No./Search">
+					        </div>
+					        <button id="go" type="submit" class="btn btn-default">GO</button>
+					        </li>
+					      </ul>
+
+		  			</div>
+				    <div class="col-md-5">
+						<span class="navbar-brand"><a href="/"><b>WEBDEV CONTROL PANEL</b></a></span>
+				    </div>
+
+					<div class="col-md-2">
+						<ul class="navbar-form navbar-right">
+							<li><a href="/html/new_project.html"><button type="button" class="btn btn-success">Create New Project</button></a></li>
+						</ul>
+					</div>
+		  		</div>
+		  </div>
+		</nav>
+		<!-- END NAVIGATION BAR -->
+
+		<?php
+		foreach($local_sites as $type => $sites)
+		{
+		?>
+
+		<!-- BEGIN LOCALSITES -->
+		<div class="row">
+			<div class="col-md-10 col-sm-offset-1">
+				<div class="panel panel-primary">
+					<div class="panel-heading repository_dropdown" controls_panel="<?php echo $type;?>">
+						<h2 class="panel-title panel-title"><?php echo (isset($trunk[$type]) ? $trunk[$type]['name'] : $type);?></h2>
+					</div>
+					<div class="panel-body" id="<?php echo $type;?>" style="display:none;">
+
+				  		<!-- Table -->
+						<table class="table table-bordered table-striped">
+							<thead>
+								<tr>
+									<th>Domain</th>
+									<th>Admin</th>
+									<th>Branch</th>
+									<th>DB</th>
+									<th>Port</th>
+									<th>Ticket</th>
+									<th>Del?</th>
+								</tr>
+							</thead>
+							<tbody>
+							<?php
+							foreach($sites->site as $l_site)
+							{
+								$admin_url = ($type=='c' ? $l_site->domain : $l_site->domain . '/admin.php');
+								$trunk_url = (isset($trunk[$type]) ? $trunk[$type]['trunk_url'] : "http://svn.worldstores.co.uk/");
+								$branch_url = (preg_match("/svn.worldstores.co.uk/i", $l_site->branch) ? $l_site->branch : (isset($trunk[$type]) ? $trunk[$type]['branch_url'] . $l_site->branch : "http://svn.worldstores.co.uk/"));
+							?>
+								<tr>
+									<td class="title">
+										<a href="http://dev.<?php echo $l_site->domain; ?>"  target="_blank"><?php echo $l_site->domain; ?></a>
+									</td>
+									<td class="admin">
+										<a href="http://dev.<?php echo $admin_url; ?>" target="_blank">admin</a>
+									</td>
+									<td class="branch">
+										<span><a href="<?php echo $branch_url; ?>" target="_blank"><?php echo $l_site->branch; ?></a></span>
+									</td>
+									<td>
+										<span><?php echo $l_site->db; ?></span>
+									</td>
+									<td>
+										<a href="http://dev.<?php echo $l_site->domain; ?>/admin.php" target="_blank"><?php echo $l_site->port; ?></a>
+									</td>
+									<td>
+										<a href="http://trac.worldstores.co.uk/ticket/<?php echo $l_site->ticket; ?>" target="_blank"><?php echo $l_site->ticket; ?></a>
+									</td>
+									<td>
+										<?php
+										if($l_site->ticket > 0)
+										{
+											echo "<a class='delete_project' id='{$l_site->port}' domain='{$l_site->domain}' href='javascript: return false;'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></a>";
+										}
+										else
+										{
+											echo "<span class='middle'>-</span>";
+										}
+										?>
+									</td>
+								</tr>
+							<?php
+							}
+							?>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<?php
+		}
+		?>
+		<!-- END LOCALSITES -->
+
+
+		<?php
+		if (is_array($webdevsites) && count($webdevsites) > 0)
+		{
+			?>
+			<div class="one_full">
+				<h2 class="repository_dropdown" table_id="Webdev">Webdev</h2>
+				<table id="Webdev" class="table-striped" style="display:none;">
+					<thead>
+						<tr>
+							<th>Site</th>
+							<th></th>
+							<th>Branch</th>
+							<th>Revision</th>
+							<th>Last Updated</th>
+						</tr>
+					</thead>
+
+					<tbody>
+			<?php
+			foreach($webdevsites as $w_site)
+			{
+			?>
+				<tr>
+					<td class="title">
+						<a href="http://test.dave.<?php echo $w_site->testsite; ?>.webdev"  target="_blank">usman.<?php echo $w_site->testsite; ?>.webdev</a>
+					</td>
+					<td class="admin">
+						<a href="http://test.dave.<?php echo $w_site->testsite; ?>.webdev/admin.php" target="_blank">admin</a>
+					</td>
+					<td class="branch">
+						<span><?php echo $w_site->branch; ?></span>
+					</td>
+					<td>
+						<span><?php if(isset($w_site->revision)){echo $w_site->revision;}else{echo "-";} ?></span>
+					</td>
+					<td>
+						<span><?php echo date('H:i:s dS M Y (l)',($w_site->last_updated)); ?></span>
+					</td>
+				</tr>
+			<?php
+			}
+			?>
+					</tbody>
+				</table>
+			</div>
+		<?php
+
+		}
+		?>
+
+		<!-- LIVE CENTRAL ADMIN -->
+		<?php
+		if (isset($top_livesites) && count($top_livesites) > 0)
+		{
+		?>
+		<div class="row">
+			<div class="col-md-10 col-sm-offset-1">
+				<div class="panel panel-success">
+					<div class="panel-heading repository_dropdown" controls_panel="liveCA">
+						<h2 class="panel-title panel-title"><b>**LIVE Central Admin**</b></h2>
+					</div>
+					<div class="panel-body" id="liveCA">
+
+				  		<!-- Table -->
+						<table class="table table-bordered table-striped">
+							<thead>
+								<tr>
+									<th>Site</th>
+									<th>Admin</th>
+									<th>Repo</th>
+								</tr>
+							</thead>
+							<tbody>
+							<?php
+							$i = 0;
+							foreach($top_livesites as $s=>$l_site)
+							{
+								$i++;
+							?>
+								<tr>
+									<form method="POST" name="admin_form_1_<?php echo $i;?>" action="https://<?php echo $l_site->url;?>/admin/admin_login.php" target="_blank">
+										<input type="hidden" name="login" value="admin">
+										<input type="hidden" name="subuser" value="<?php echo (isset($l_site->sub_user) ? $l_site->sub_user : $sub_user );?>">
+										<input type="hidden" name="password" value="<?php echo (isset($l_site->sub_pass) ? $l_site->sub_pass : $sub_pass );?>">
+										<input type="hidden" name="website_id" value="<?php echo $l_site->website_id;?>">
+										<input type="hidden" name="return_page" value="/admin/admin_login.php">
+										<input type="hidden" name="operation" value="login">
+										<td class="title">
+											<?php echo $s;?>
+										</td>
+										<td class="admin">
+											<a href="#" target="_blank" onclick="document.forms['admin_form_1_<?php echo $i;?>'].submit();return false;">**ADMIN**</a>
+										</td>
+										<td class="branch">
+											<span>http://svn.worldstores.co.uk/centraladmin/trunk</span>
+										</td>
+									</form>
+								</tr>
+							<?php
+							}
+							?>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<?php
+		}
+
+		if (isset($livesites) && count($livesites) > 0)
+		{
+		?>
+
+		<!-- LIVE SITES -->
+		<div class="row">
+			<div class="col-md-10 col-sm-offset-1">
+				<div class="panel panel-success">
+					<div class="panel-heading repository_dropdown" controls_panel="liveCA">
+						<h2 class="panel-title panel-title">**LIVE**</h2>
+					</div>
+					<div class="panel-body" id="liveCA">
+
+				  		<!-- Table -->
+						<table class="table table-bordered table-striped">
+							<thead>
+								<tr>
+									<th>Site</th>
+									<th>Admin</th>
+									<th>Repo</th>
+								</tr>
+							</thead>
+							<tbody>
+							<?php
+							$i = 0;
+							foreach($livesites as $s=>$l_site)
+							{
+								$i++;
+							?>
+								<tr>
+									<form method="POST" name="admin_form_1_<?php echo $i;?>" action="https://<?php echo $l_site->url;?>/admin/admin_login.php" target="_blank">
+										<input type="hidden" name="login" value="admin">
+										<input type="hidden" name="subuser" value="<?php echo (isset($l_site->sub_user) ? $l_site->sub_user : $sub_user );?>">
+										<input type="hidden" name="password" value="<?php echo (isset($l_site->sub_pass) ? $l_site->sub_pass : $sub_pass );?>">
+										<input type="hidden" name="website_id" value="<?php echo $l_site->website_id;?>">
+										<input type="hidden" name="return_page" value="/admin/admin_login.php">
+										<input type="hidden" name="operation" value="login">
+										<td class="title">
+											<?php echo $s;?>
+										</td>
+										<td class="admin">
+											<a href="#" target="_blank" onclick="document.forms['admin_form_1_<?php echo $i;?>'].submit();return false;">**ADMIN**</a>
+										</td>
+										<td class="branch">
+											<span>http://svn.worldstores.co.uk/centraladmin/trunk</span>
+										</td>
+									</form>
+								</tr>
+							<?php
+							}
+							?>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<?php
+		}
+		?>
+	</body>
+</html>
