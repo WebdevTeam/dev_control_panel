@@ -6,7 +6,7 @@ $top_livesites = arrayToObject($liveTopsites_array);
 $livesites = arrayToObject($livesites_array);
 
 //Get contents of current feed
-$devsites_path = $_SERVER['DOCUMENT_ROOT'] . "../feeds/devsites";
+$devsites_path = $_SERVER['DOCUMENT_ROOT'] . "/../feeds/devsites";
 
 if (!file_exists($devsites_path))
 {
