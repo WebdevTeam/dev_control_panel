@@ -316,9 +316,9 @@
 							<tbody>
 							<?php
 							$i = 0;
-							foreach($livesites as $livesite)
+							foreach($livesites as $key=>$livesite)
 							{
-								$s = $key = key((array)$livesite);
+								$s = $k = key((array)$livesite);
 								$l_site = $livesite->$s;
 								$i++;
 							?>
@@ -331,7 +331,7 @@
 										<input type="hidden" name="return_page" value="/admin/admin_login.php">
 										<input type="hidden" name="operation" value="login">
 										<td class="title">
-											<?php echo $s;?>
+											<?php echo $s;?> [<?php echo $livesite->$s->order_prefix;?>:<?php echo $livesite->$s->website_id;?>]
 										</td>
 										<td class="admin">
 											<a href="#" target="_blank" onclick="document.forms['admin_livesite_form_1_<?php echo $i;?>'].submit();return false;">**ADMIN**</a>

@@ -1,7 +1,7 @@
 <?php
 require_once 'includes/common.php';
 
-asort($livesites_array);
+//asort($livesites_array);
 $top_livesites = arrayToObject($liveTopsites_array);
 $livesites = arrayToObject($livesites_array);
 
