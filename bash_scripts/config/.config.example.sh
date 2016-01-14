@@ -10,6 +10,10 @@ hosts_file="/etc/hosts"
 svn_url="http://svn.worldstores.co.uk"
 svn_path="/usr/local/bin/svn"
 
+use_git=0
+git_url="git@bitbucket.org:worldstores"
+git_path="/usr/bin/git"
+
 ###Local File structure.
 sites_base_directory="/Users/$user/Sites"
 #Dir location for sitebase

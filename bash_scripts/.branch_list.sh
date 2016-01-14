@@ -28,29 +28,31 @@ done
 		echo "SVN repo - sitebase/centraladmin/privatesales/LogisticAPI/TMO? ( s/c/p/l/t ) : \c"
 		read repo_location
 	fi
-	if [ "$repo_location" = "s" ] || [ "$repo_location" = "S" ]; then
-		svn_branch_url="$svn_url/sitebase/branch"
-		log_file="branch_list_s.xml"
+
+	if [ "$repo_location" = "s" ] || [ "$repo_location" = "s" ]; then
+	    echo "No Longer available"
+	    exit
 	elif [ "$repo_location" = "k" ] || [ "$repo_location" = "K" ]; then
-		svn_branch_url="$svn_url/skubase/branches"
+		git_master_url="$git_url/skubase.git"
 		log_file="branch_list_k.xml"
 	elif [ "$repo_location" = "c" ] || [ "$repo_location" = "C" ]; then
-		svn_branch_url="$svn_url/centraladmin/branches"
+		git_master_url="$git_url/centraladmin.git"
 		log_file="branch_list_c.xml"
 	elif [ "$repo_location" = "p" ] || [ "$repo_location" = "P" ]; then
-		svn_branch_url="$svn_url/privatesales/branches"
+		git_master_url="$git_url/casafina.git"
 		log_file="branch_list_p.xml"
 	elif [ "$repo_location" = "l" ] || [ "$repo_location" = "L" ]; then
-		svn_branch_url="$svn_url/logisticsapi/branch"
+	    git_master_url="$git_url/logisticapi.git"
 		log_file="branch_list_l.xml"
 	elif [ "$repo_location" = "t" ] || [ "$repo_location" = "T" ]; then
-		svn_branch_url="$svn_url/tmo/branches"
+		git_master_url="$git_url/tmo.git"
 		log_file="branch_list_t.xml"
 	else
 		echo -e "INAPPROPRIATE RESPONSE. EXITING.........\n"
 		exit
 	fi
-
+$git_path ls-remote --heads $git_master_url| grep -o "refs/heads/.*"
+exit
 $svn_path list --xml $svn_branch_url > $control_panel_log_dir/$log_file
 osascript -e 'tell application "Terminal" to activate' -e 'tell application "System Events" to tell process "Terminal" to keystroke "w" using command down'
 

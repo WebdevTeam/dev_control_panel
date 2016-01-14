@@ -42,25 +42,27 @@ $site_types = array(
 	"t" => "TMO"
 	);
 
-$liveTopsites_array = array(
+$liveTopsites_array[] = array(
 	"CWS01" => array(
 			"repo" => "http://svn.worldstores.co.uk/centraladmin/trunk",
 			"url" => "cws01.worldstores.co.uk",
 			"website_id" => 9201
-		),
-	"CWS02" => array(
-			"repo" => "http://svn.worldstores.co.uk/centraladmin/trunk",
-			"url" => "cws02.worldstores.co.uk",
-			"website_id" => 9202
 		)
 	);
 
-$livesites_array = array(
+$livesites_array[] = array(
+	"Kiddicare" => array(
+			"repo" => "http://svn.worldstores.co.uk/privatesale/trunk",
+			"url" => "www.kiddicare.com",
+			"website_id" => 164
+		));
+$livesites_array[] = array(
 	"WorldStores" => array(
 			"repo" => "http://svn.worldstores.co.uk/sitebase/trunk",
 			"url" => "www.worldstores.co.uk",
 			"website_id" => 69
-		),
+		));
+$livesites_array[] = array(
 	"Casafina" => array(
 			"repo" => "http://svn.worldstores.co.uk/privatesale/trunk",
 			"url" => "www.casafina.com",

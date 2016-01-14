@@ -176,7 +176,58 @@
 
 		}
 		?>
+		<div class="row">
+			<div class="col-md-10 col-sm-offset-1">
+				<div class="panel panel-success">
+				<div class="panel-heading repository_dropdown">
+					<h2 class="panel-title title">Limbo</h2>
+				</div>
+				<div class="panel-body" id="Limbo">
+					<form accept-charset="UTF-8" class="limbo_partcode_info" id="limbo_partcode_info" action="http://192.168.1.55/nav/products_sold.asp?_LANG=Eng&_UGCODE=SYSTEM&_USERID=269&_UGID=1&_UNAME=usman&_SITESET=" target="_blank" method="POST">
+						<input type="hidden" name="pagemode" value="ORDERS">
+					  <div class="form-group">
+					    <label for="pcode">Partcode</label>
+					    <input class="form-control" id="pcode" name="pcode" type="text">
+					  </div>
+					  <input class="btn btn-default" name="commit" type="submit" value="Check Product Status">
+					</form>
+				</div>
+				<div>
+					<a href="http://192.168.1.53/vis/flow_diagram3.php?diagram=Orders_4">Flow Diagrams</a>
+				</div>
+				<div>
+					<a href="http://beast.worldstores.co.uk/system/auto_monitoring_split.php">Order Flow Graph</a>
+				</div>
+			</div>
+			</div>
+		</div>
 
+		<div class="row">
+			<div class="col-md-10 col-sm-offset-1">
+			<div class="panel panel-success">
+				<div class="panel-heading repository_dropdown">
+					<h2 class="panel-title panel-title">HPS</h2>
+				</div>
+				<div class="panel-body" id="Limbo">
+					<form accept-charset="UTF-8" action="/hps.php" class="new_user" id="new_user" method="get" target="_blank">
+					  <div class="form-group">
+					    <label for="ref">Transaction ID</label>
+					    <input class="form-control" id="ref" name="ref" type="int">
+					  </div>
+					  <div class="form-group">
+					    <label for="vtid">Account</label>
+					    <select class="form-control" id="vtid" name="vtid">
+						    <option value="21860306">WS - 21860306</option>
+						    <option value="21860568">WS Mobile - 21860568</option>
+						    <option value="21860952">KC - 21860952</option>
+						  </select>
+					  </div>
+					  <input class="btn btn-default" name="commit" type="submit" value="Submit">
+					</form>
+				</div>
+			</div>
+			</div>
+		</div>
 		<!-- LIVE CENTRAL ADMIN -->
 		<?php
 		if (isset($top_livesites) && count($top_livesites) > 0)
@@ -202,8 +253,10 @@
 							<tbody>
 							<?php
 							$i = 0;
-							foreach($top_livesites as $s=>$l_site)
+							foreach($top_livesites as $top_livesite)
 							{
+								$s = $key = key((array)$top_livesite);
+								$l_site = $top_livesite->$s;
 								$i++;
 							?>
 								<tr>
@@ -262,12 +315,14 @@
 							<tbody>
 							<?php
 							$i = 0;
-							foreach($livesites as $s=>$l_site)
+							foreach($livesites as $livesite)
 							{
+								$s = $key = key((array)$livesite);
+								$l_site = $livesite->$s;
 								$i++;
 							?>
 								<tr>
-									<form method="POST" name="admin_form_1_<?php echo $i;?>" action="https://<?php echo $l_site->url;?>/admin/admin_login.php" target="_blank">
+									<form method="POST" name="admin_livesite_form_1_<?php echo $i;?>" action="https://<?php echo $l_site->url;?>/admin/admin_login.php" target="_blank">
 										<input type="hidden" name="login" value="admin">
 										<input type="hidden" name="subuser" value="<?php echo (isset($l_site->sub_user) ? $l_site->sub_user : $sub_user );?>">
 										<input type="hidden" name="password" value="<?php echo (isset($l_site->sub_pass) ? $l_site->sub_pass : $sub_pass );?>">
@@ -278,7 +333,7 @@
 											<?php echo $s;?>
 										</td>
 										<td class="admin">
-											<a href="#" target="_blank" onclick="document.forms['admin_form_1_<?php echo $i;?>'].submit();return false;">**ADMIN**</a>
+											<a href="#" target="_blank" onclick="document.forms['admin_livesite_form_1_<?php echo $i;?>'].submit();return false;">**ADMIN**</a>
 										</td>
 										<td class="branch">
 											<span>http://svn.worldstores.co.uk/centraladmin/trunk</span>
@@ -297,5 +352,8 @@
 		<?php
 		}
 		?>
+		
+		
+		
 	</body>
 </html>
