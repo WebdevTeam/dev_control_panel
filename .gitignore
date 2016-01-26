@@ -6,3 +6,6 @@ bash_scripts/config/*
 logfiles/
 feeds/
 htdocs/includes/user.config.php
+vendor/
+error.log
+access.log

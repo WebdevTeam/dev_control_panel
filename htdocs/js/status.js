@@ -2,6 +2,36 @@ $(document).ready(function()
 {
 	//Show tooltips
 	$('[data-toggle="tooltip"]').tooltip();
+	$('.toggel_server_info').click(function(){
+
+		$('.server_info').slideToggle('slow');
+
+       if($(this).text() == 'less'){
+           $(this).text('more');
+       } else {
+           $(this).text('less');
+       }
+	});
+
+	$('#run_rocketeer').click(function(){
+		$.ajax(
+			{
+				url: '/run_rocketeer.php',
+				type: "GET",
+				success: function (data)
+				{
+					// result = JSON.parse(data);
+					// if (result['status'].match("^tab 1 of window id"))
+					// {
+					// 	alert('Please go to your terminal to complete the rest of process');
+					// }
+					// else
+					// {
+					// 	alert('Not able to open new terminal. Please try again or run manually:\n\n' + result['command'] + '\n\n');
+					// }
+				}
+			});
+	});
 
 	$('.delete_project').click(function()
 	{

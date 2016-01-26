@@ -1,0 +1,7 @@
+{
+  "require": {
+    "anahkiasen/rocketeer": "dev-master",
+    "twig/twig": "~1.0"
+  }
+}
+
