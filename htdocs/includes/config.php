@@ -75,8 +75,8 @@ $livesites_array[] = array(
 									'internal' => '172.20.37.2',
 									'external' => '109.71.125.90:2204'
 								)
-						)
-					,'kiddicare3'=>array(
+						),
+					'kiddicare3'=>array(
 							"webpark" => '4',
 							'name'=>'web113',
 							'ip'=>array(
@@ -98,6 +98,40 @@ $livesites_array[] = array(
 							'ip'=>array(
 									'internal' => '172.20.37.11',
 									'external' => '109.71.125.92'
+								)
+						)
+				),
+			"other_info" => array(
+					'KC-S-Redis1' => array(
+							"webpark" => '4',
+							'name'=>'res006',
+							'ip'=>array(
+									'internal' => '172.20.37.11',
+									'external' => '109.71.125.92'
+								)
+						),
+					'KC-S-DB1'=>array(
+							"webpark" => '4',
+							'name'=>'dbs004',
+							'ip'=>array(
+									'internal' => '172.20.37.7',
+									'external' => '109.71.125.90:2200'
+								)
+						),
+					'KC-S-DB2'=>array(
+							"webpark" => '4',
+							'name'=>'dbs005',
+							'ip'=>array(
+									'internal' => '172.20.35.2',
+									'external' => '109.71.125.90:2201'
+								)
+						),
+					'KC-Varnish'=>array(
+							"webpark" => '4',
+							'name'=>'res011',
+							'ip'=>array(
+									'internal' => '172.20.37.5',
+									'external' => '109.71.125.94'
 								)
 						)
 				)
@@ -147,6 +181,56 @@ $livesites_array[] = array(
 							'ip'=>array(
 									'internal' => '172.20.38.48',
 									'external' => '217.169.62.238:2222'
+								)
+						)
+				),
+			"other_info" => array(
+					'ws-redis-1'=>array(
+							"webpark" => '5',
+							'name'=>'res015',
+							'ip'=>array(
+									'internal' => '172.20.38.5',
+									'external' => '217.169.62.238:2205'
+								)
+						),
+					'ws-redis-2'=>array(
+							"webpark" => '5',
+							'name'=>'res016',
+							'ip'=>array(
+									'internal' => '172.20.38.6',
+									'external' => '217.169.62.238:2206'
+								)
+						),
+					'ws-redis-3'=>array(
+							"webpark" => '5',
+							'name'=>'res017',
+							'ip'=>array(
+									'internal' => '172.20.38.7',
+									'external' => '217.169.62.238:2207'
+								)
+						),
+					'ws-DB1'=>array(
+							"webpark" => '5',
+							'name'=>'dbs009',
+							'ip'=>array(
+									'internal' => '172.20.38.8',
+									'external' => '217.169.62.238:2208'
+								)
+						),
+					'ws-DB2'=>array(
+							"webpark" => '5',
+							'name'=>'dbs010',
+							'ip'=>array(
+									'internal' => '172.20.38.9',
+									'external' => '217.169.62.238:2209/ mysql: 3306'
+								)
+						),
+					'ws-DB3'=>array(
+							"webpark" => '5',
+							'name'=>'dbs022',
+							'ip'=>array(
+									'internal' => '172.20.38.50',
+									'external' => '217.169.62.238:2226/FTP:2126'
 								)
 						)
 				)

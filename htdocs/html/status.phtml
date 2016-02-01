@@ -194,12 +194,9 @@
 								$l_site = $livesite->$s;
 								$site_tag_url = $livesite->$s->repo . '/commits/tag/';
 								$server_list = (array)$livesite->$s->server;
+								$other_server_list = (array)$livesite->$s->other_info;
 								
 								$server_info = '';
-								foreach ($server_list as $s_k => $server) {
-									// var_dump($server);exit();
-									$server_info .= '<li><b>' . $s_k .'</b>: <small><b>Branch:</b> <u>' . $site_branches[$s_k] . '</u> <b>Tag:</b> <a href="'.$site_tag_url.$site_tags[$s_k].'" target="_new">' . $site_tags[$s_k] . '</a></small><ul><li style="display:none;" class="server_info"><b>Webpark:</b>  '.$server->webpark.' <b>Internal IP:</b> '.$server->ip->internal.' <b>External IP:</b> '.$server->ip->external.'</li></ul></li>';
-								}
 								$i++;
 							?>
 								<tr>
@@ -217,7 +214,51 @@
 											<a href="#" target="_blank" onclick="document.forms['admin_livesite_form_1_<?php echo $i;?>'].submit();return false;">**ADMIN**</a>
 										</td>
 										<td class="branch">
-											<span><ul><?php echo $server_info;?></ul></span>
+											
+
+											<span><ul>
+											<?php
+												foreach ($server_list as $s_k => $server) {
+											?>
+												<li>
+													<b><?php echo $s_k;?></b>: (<?php echo $server->name;?>)
+													<small><b>Branch:</b> <u><?php echo $site_branches[$s_k];?></u>
+													<b>Tag:</b><a href="<?php echo $site_tag_url.$site_tags[$s_k];?>" target="_new"><?php echo $site_tags[$s_k];?></a></small>
+													<ul>
+														<li style="display:none;" class="server_info">
+															<b>Webpark:</b> <?php echo $server->webpark;?> 
+															<b>Internal IP:</b> <?php echo $server->ip->internal;?> 
+															<b>External IP:</b> <?php echo $server->ip->external;?>
+														</li>
+													</ul>
+												</li>
+
+											<?php
+												}
+												if(count($other_server_list)>0){
+													echo '<p>&nbsp;</p>';
+												}
+												foreach ($other_server_list as $s_k => $server) {
+											?>
+												<li style="display:none;" class="server_info">
+													*** <b><i><?php echo $s_k;?></i></b>: (<?php echo $server->name;?>)
+													
+													<ul>
+														<li>
+															<b>Webpark:</b> <?php echo $server->webpark;?> 
+															<b>Internal IP:</b> <?php echo $server->ip->internal;?> 
+															<b>External IP:</b> <?php echo $server->ip->external;?>
+														</li>
+													</ul>
+												</li>
+
+											<?php
+												}
+											?>
+											</ul>
+											</span>
+
+
 										</td>
 									</form>
 								</tr>
