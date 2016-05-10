@@ -194,7 +194,7 @@
 								$l_site = $livesite->$s;
 								$site_tag_url = $livesite->$s->repo . '/commits/tag/';
 								$server_list = (array)$livesite->$s->server;
-								$other_server_list = (array)$livesite->$s->other_info;
+								$other_server_list = isset($livesite->$s->other_info) ? (array)$livesite->$s->other_info : array();
 								
 								$server_info = '';
 								$i++;
@@ -222,8 +222,14 @@
 											?>
 												<li>
 													<b><?php echo $s_k;?></b>: (<?php echo $server->name;?>)
+													<?php
+														if(isset($site_branches[$s_k])) {
+													?>
 													<small><b>Branch:</b> <u><?php echo $site_branches[$s_k];?></u>
 													<b>Tag:</b><a href="<?php echo $site_tag_url.$site_tags[$s_k];?>" target="_new"><?php echo $site_tags[$s_k];?></a></small>
+													<?php
+														}
+													?>
 													<ul>
 														<li style="display:none;" class="server_info">
 															<b>Webpark:</b> <?php echo $server->webpark;?> 

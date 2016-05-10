@@ -34,7 +34,8 @@ if (!file_exists($devsites_path))
 }
 
 $devsites_contents = objectToArray(json_decode(file_get_contents($devsites_path, true)));
-
+$contents_array = new stdClass();
+if(is_array($devsites_contents))
 foreach ($devsites_contents as $key => $value)
 {
 	$contents_array[strtolower($value['repo'])][strtolower($value['type'])][] = $value;

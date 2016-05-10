@@ -2,7 +2,8 @@
 
 tags_file="feeds/tags"
 branches_file="feeds/branches"
-cd /Users/usmanniazi/Sites/control_panel/
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+cd $DIR
 tags="$(vendor/bin/rocketeer get:remote:tag --parallel | grep 'webdeploy@' | cut -d '(' -f2,3 | tr -dc '[:alnum:][:punct:]\n\r' | sed 's/)\[39m/ /')"
 branches="$(vendor/bin/rocketeer get:remote:branch --parallel | grep 'webdeploy@' | cut -d '(' -f2,3 | tr -dc '[:alnum:][:punct:]\n\r' | sed 's/)\[39m/ /')"
 
