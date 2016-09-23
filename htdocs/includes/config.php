@@ -1,5 +1,6 @@
 <?php
 
+
 $trunk = array(
 	"c" => array(
 		"name" => "Central Admin",
@@ -237,6 +238,51 @@ $livesites_array[] = array(
 		));
 
 $livesites_array[] = array(
+	"Achicanow" => array(
+		"repo" => "https://bitbucket.org/worldstores/skubase",
+		"url" => "www.achicanow.com",
+		"website_id" => 201,
+		"order_prefix" => 'AN',
+		"server" => array(
+			'achicanow1'=>array(
+				"webpark" => 'AWS',
+				'name'=>'Achicanow.com-Master-A',
+				'ip'=>array(
+					'internal' => '172.20.37.1',
+					'external' => '-'
+				)
+			),
+			'achicanow2'=>array(
+				"webpark" => 'AWS',
+				'name'=>'Achicanow.com-Master-B',
+				'ip'=>array(
+					'internal' => '172.16.19.190',
+					'external' => '-'
+				)
+			)
+		),
+		"other_info" => array(
+
+			'AchicaNow-DB'=>array(
+				"webpark" => 'AWS',
+				'name'=>'achicanowdb',
+				'ip'=>array(
+					'internal' => 'achicanow.c2u4xpbzygnn.eu-west-1.rds.amazonaws.com:3306',
+					'external' => '-'
+				)
+			),
+			'AchicaNow-Redis'=>array(
+				"webpark" => 'AWS',
+				'name'=>'achicanowdb',
+				'ip'=>array(
+					'internal' => 'achicanowredis-001.f7gumn.0001.euw1.cache.amazonaws.com',
+					'external' => '-'
+				)
+			)
+		)
+	));
+
+$livesites_array[] = array(
 	"BedroomWorld" => array(
 			"repo" => "https://bitbucket.org/worldstores/skubase",
 			"url" => "www.bedroomworld.co.uk",
@@ -453,6 +499,32 @@ $livesites_array[] = array(
 				)
 		)
 	);
+
+$livesites_array[] = array(
+	"LogisticApi" => array(
+			"repo" => "https://bitbucket.org/worldstores/logistic-api",
+			"url" => "https://api.worldstores.co.uk/v1/",
+			"website_id" => 0,
+			"order_prefix" => 'N/A',
+			"server" => array(
+					'lapi-live'=>array(
+							"webpark" => '4',
+							'name'=>'res002',
+							'ip'=>array(
+									'internal' => '172.20.34.34',
+									'external' => '85.92.200.243'
+								)
+						),
+					'lapi-staging'=>array(
+							"webpark" => '4',
+							'name'=>'res002',
+							'ip'=>array(
+									'internal' => '172.20.34.34',
+									'external' => '85.92.200.243'
+								)
+						)
+				)
+		));
 
 
 

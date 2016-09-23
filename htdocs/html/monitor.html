@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Monitor</title>
+    <!-- Main CSS for website -->
+    <link type="text/css" rel="stylesheet" href="/css/lb_style.css"/>
+    <!-- End -->
+
+    <script type="text/javascript" src="/js/jquery-1.3.2.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.ui.draggable.js"></script>
+
+    <!-- Include js and css for Divbox -->
+    <script type="text/javascript" src="/js/divbox.js"></script>
+    <link type="text/css" rel="stylesheet" href="/css/divbox.css"/>
+    <!-- End -->
+
+
+    <style type="text/css">
+
+        .left {
+            float: left;
+        }
+
+        .right {
+            float: right;
+        }
+        .graph_type{
+            margin-left: 10px;
+        }
+        .clicked {
+            background-color: yellow;
+        }
+
+        .fullScreen {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .graphs {
+            width: 100%;
+            height: 90%;
+        }
+
+        .order_flow {
+            float: left;
+            width: 1800px;
+            height: 1000px;
+        }
+
+        .secondry_area {
+            float: left;
+            width: 900px;
+            height: 1500px;
+        }
+
+        .beanstalk {
+            float: left;
+            width: 1000px;
+            height: 1000px;
+            -ms-zoom: 0.75;
+            -moz-transform: scale(0.75);
+            -moz-transform-origin: 0 0;
+            -o-transform: scale(0.75);
+            -o-transform-origin: 0 0;
+            -webkit-transform: scale(0.75);
+            -webkit-transform-origin: 0 0;
+        }
+
+        .order_graph {
+            float: left;
+            width: 960px;
+            height: 500px;
+            -ms-zoom: 0.90;
+            -moz-transform: scale(0.90);
+            -moz-transform-origin: 0 0;
+            -o-transform: scale(0.90);
+            -o-transform-origin: 0 0;
+            -webkit-transform: scale(0.90);
+            -webkit-transform-origin: 0 0;
+        }
+    </style>
+    <script type="application/javascript">
+        function loadIframe(iframeName, url) {
+            var $iframe = $('#' + iframeName);
+            var order_graph_full_screen = $('#order_graph_full_screen');
+            if ( $iframe.length ) {
+                $iframe.attr('src',url);
+                order_graph_full_screen.attr('href',url);
+                $('#graph_type_1').toggleClass('clicked');
+                $('#graph_type_2').toggleClass('clicked');
+                return false;
+            }
+            return true;
+        }
+        $( document ).ready(function() {
+            $('#graph_type_1').addClass('clicked');
+            $('#graph_type_2').removeClass('clicked');
+            $iframe = $('#order_graph');
+            var order_graph_full_screen = $('#order_graph_full_screen');
+            var current_src = $iframe.attr('src');
+            var default_src = 'https://reports.worldstores.co.uk/system/auto_monitoring_split.php?sum=1';
+            if(current_src != default_src){
+                $iframe.attr('src',default_src);
+                order_graph_full_screen.attr('href',default_src);
+            }
+            //loadIframe('order_graph', 'https://reports.worldstores.co.uk/system/auto_monitoring_split.php?sum=2');
+        });
+
+    </script>
+</head>
+
+<body>
+
+<div class="graphs">
+    <iframe class="order_flow" src="https://reports.worldstores.co.uk/vis/flow_diagram3.php?diagram=Orders_4"></iframe>
+    <div class="secondry_area">
+        <div class="left">
+            <div class="left">
+                <div class="left">Show graph Type:</div>
+                <div class="left graph_type" id="graph_type_1" onclick="return loadIframe('order_graph', 'https://reports.worldstores.co.uk/system/auto_monitoring_split.php?sum=1');">[1]</div>
+                <div class="left graph_type"  id="graph_type_2" onclick="return loadIframe('order_graph', 'https://reports.worldstores.co.uk/system/auto_monitoring_split.php?sum=2');">[2]</div>
+                <div class="right graph_type">
+                <a id="order_graph_full_screen" href="https://reports.worldstores.co.uk/system/auto_monitoring_split.php?sum=1" class="lightbox">
+                    <img src="/images/full_screen_l.png">
+                </a>
+                </div>
+            </div>
+            <div class="left">
+                <iframe class="order_graph" id="order_graph" src="https://reports.worldstores.co.uk/system/auto_monitoring_split.php?sum=1"></iframe>
+            </div>
+        </div>
+        <div class="left">
+            <div class="left">
+                <a href="https://cws01.worldstores.co.uk/livefeed/public/index.php?server=172.20.37.15:11300" class="lightbox">
+                    <img src="/images/full_screen_l.png" />
+                </a>
+            </div>
+            <div class="left">
+                <iframe class="beanstalk" src="https://cws01.worldstores.co.uk/livefeed/public/index.php?server=172.20.37.15:11300"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $('.lightbox').divbox({caption: false});
+
+</script>
+</body>
+
+</html>

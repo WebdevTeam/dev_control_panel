@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Monitor</title>
+    <style type="text/css">
+        .order_flow {
+            float:left;
+            width:63%;
+            height:100%;
+        }
+        .graphs{
+            width: 100%;
+
+        }
+        .secondry_area {
+            float:left;
+            width:37%;
+            height:80%;
+        }
+        .beanstalk {
+            float:left;
+            width:75%;
+            height:80%;
+        }
+        .order_graph {
+            float:left;
+            width:75%;
+            height:80%;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="menu">
+    {menu items inserted here by server-side scripting}
+</div>
+
+<div class="graphs">
+<iframe class="order_flow" src="https://reports.worldstores.co.uk/vis/flow_diagram3.php?diagram=Orders_4"></iframe>
+<div class="secondry_area">
+    <iframe class="beanstalk" src="https://cws01.worldstores.co.uk/livefeed/public/index.php?server=172.20.37.15:11300"></iframe>
+    <iframe class="order_graph" src="https://reports.worldstores.co.uk/system/auto_monitoring_split.php?sum=1"></iframe>
+</div>
+</div>
+</body>
+
+</html>

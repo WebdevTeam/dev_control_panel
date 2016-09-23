@@ -1,287 +1,339 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<!-- <link rel="stylesheet" type="text/css" media="screen" href="/css/workless/minified.css.php" /> -->
-		<link rel="stylesheet" type="text/css" media="screen" href="/css/styles.css" />
-		<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css"> -->
+<head>
+	<!-- <link rel="stylesheet" type="text/css" media="screen" href="/css/workless/minified.css.php" /> -->
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/styles.css"/>
+	<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css"> -->
 
-		<link rel="stylesheet" href="/components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/components/bootstrap/dist/css/bootstrap.min.css">
 
-    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-		<script src="/components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="/components/bootstrap/dist/js/bootstrap.min.js"></script>
 
-		<script src="/js/status.js"></script>
+	<script src="/js/status.js"></script>
 
-	</head>
+</head>
 
-	<body>
+<body>
 
-		<!-- NAVIGATION BAR -->
-		<nav class="navbar navbar-inverse">
-		  <div class="container-fluid">
-		  		<div class="row">
-		  			<div class="col-md-5">
-					      <ul class="navbar-form navbar-left nav" role="search">
-					        <li>
-					        <div class="form-group">
-					          <input type="text" class="form-control"  id="gemini_search" placeholder="Ticket No./Search">
-					        </div>
-					        <button id="go" type="submit" class="btn btn-default">GO</button>
-					        <span><a target="_blank" href="http://supportdesk.it.worldstores.co.uk/workspace/<?php echo $gemini['board_id'];?>/board"><?php echo $gemini['board_name'];?> board</a></span>
-					        </li>
-					      </ul>
-
-		  			</div>
-				    <div class="col-md-5">
-						<span class="navbar-brand"><a href="/"><b>WEBDEV CONTROL PANEL</b></a></span>
-				    </div>
-
-					<div class="col-md-2">
-						<ul class="navbar-form navbar-right">
-							<li><button type="button" class="btn btn-success" id="run_rocketeer">Run Rocketeer</button></li>
-						</ul>
-					</div>
-		  		</div>
-		  </div>
-		</nav>
-		<!-- END NAVIGATION BAR -->
-
-		
-
+<!-- NAVIGATION BAR -->
+<nav class="navbar navbar-inverse">
+	<div class="container-fluid">
 		<div class="row">
-			<div class="col-md-10 col-sm-offset-1">
-				<div class="panel panel-success">
-				<div class="panel-heading repository_dropdown">
-					<h2 class="panel-title title">Limbo</h2>
-				</div>
-				<div class="panel-body" id="Limbo">
-					<form accept-charset="UTF-8" class="limbo_partcode_info" id="limbo_partcode_info" action="http://192.168.1.55/nav/products_sold.asp?_LANG=Eng&_UGCODE=SYSTEM&_USERID=269&_UGID=1&_UNAME=usman&_SITESET=" target="_blank" method="POST">
-						<input type="hidden" name="pagemode" value="ORDERS">
-					  <div class="form-group">
-					    <label for="pcode">Partcode</label>
-					    <input class="form-control" id="pcode" name="pcode" type="text">
-					  </div>
-					  <input class="btn btn-default" name="commit" type="submit" value="Check Product Status">
-					</form>
-				</div>
-				<div>
-					<a href="http://192.168.1.53/vis/flow_diagram3.php?diagram=Orders_4">Flow Diagrams</a>
-				</div>
-				<div>
-					<a href="http://beast.worldstores.co.uk/system/auto_monitoring_split.php">Order Flow Graph</a>
-				</div>
+			<div class="col-md-5">
+				<ul class="navbar-form navbar-left nav" role="search">
+					<li>
+						<div class="form-group">
+							<input type="text" class="form-control" id="gemini_search" placeholder="Ticket No./Search">
+						</div>
+						<button id="go" type="submit" class="btn btn-default">GO</button>
+						<span><a target="_blank"
+								 href="http://supportdesk.it.worldstores.co.uk/workspace/<?php echo $gemini['board_id']; ?>/board"><?php echo $gemini['board_name']; ?>
+								board</a></span>
+					</li>
+				</ul>
+
 			</div>
+			<div class="col-md-5">
+				<span class="navbar-brand"><a href="/"><b>WEBDEV CONTROL PANEL</b></a></span>
+			</div>
+
+			<div class="col-md-2">
+				<ul class="navbar-form navbar-right">
+					<li>
+						<button type="button" class="btn btn-success" id="run_rocketeer">Run Rocketeer</button>
+					</li>
+				</ul>
 			</div>
 		</div>
+	</div>
+</nav>
+<!-- END NAVIGATION BAR -->
 
-		<div class="row">
-			<div class="col-md-10 col-sm-offset-1">
+
+<div class="row">
+	<div class="col-md-10 col-sm-offset-1">
+		<div class="panel panel-success">
+			<div class="panel-heading repository_dropdown">
+				<h2 class="panel-title title">Limbo</h2>
+			</div>
+			<div class="panel-body" id="Limbo">
+				<form accept-charset="UTF-8" class="limbo_partcode_info" id="limbo_partcode_info"
+					  action="http://192.168.1.55/nav/products_sold.asp?_LANG=Eng&_UGCODE=SYSTEM&_USERID=269&_UGID=1&_UNAME=usman&_SITESET="
+					  target="_blank" method="POST">
+					<input type="hidden" name="pagemode" value="ORDERS">
+					<div class="form-group">
+						<label for="pcode">Partcode</label>
+						<input class="form-control" id="pcode" name="pcode" type="text">
+					</div>
+					<input class="btn btn-default" name="commit" type="submit" value="Check Product Status">
+				</form>
+			</div>
+			<div>
+				<a href="https://reports.worldstores.co.uk/vis/flow_diagram3.php?diagram=Orders_4">Flow Monitor for
+					Orders</a>
+			</div>
+			<div>
+				<a href="https://reports.worldstores.co.uk/system/auto_monitoring_split.php?sum=2">Graph Monitor for
+					Orders</a>
+			</div>
+			<div>
+				<a href="https://worldstores.sharepoint.com/IT/Lists/Run%20Books/AllItems.aspx">Run Book</a>
+			</div>
+			<div>
+				<a href="https://reports.worldstores.co.uk/reports/">Limbo Reports Dir</a>
+			</div>
+			<div>
+				<a href="https://worldstores.sharepoint.com/IT/_layouts/15/WopiFrame.aspx?sourcedoc=%7bB7C49058-5BA4-483C-8E89-7D3713B1E7F7%7d&file=Sites%20Migration%20Progress.xlsx&action=default">Site
+					Migration</a>
+			</div>
+			<div>
+				Loggly (<a
+					href="https://worldstores.loggly.com/search#terms=ConnectionException&from=2016-05-10T07%3A24%3A14.821Z&until=2016-05-10T07%3A54%3A14.821Z&source_group=12546&filter=syslog.host%3Bweb117&filter=syslog.host%3Bweb118&filter=syslog.host%3Bweb116&filter=syslog.appName%3Bapache-error">WS
+					Errors</a> - <a
+					href="https://worldstores.loggly.com/search#terms=apache.requestURI%3APAYPAL_GENERIC_ERROR&from=2016-06-16T06%3A32%3A17.741Z&until=2016-06-17T06%3A32%3A17.741Z&source_group=&filter=syslog.host%3Bweb116&filter=syslog.host%3Bweb117&filter=syslog.host%3Bweb118">WS
+					Access</a>)
+			</div>
+			<div>
+				<a href="http://live.maxoptra.com/wstores/">Maxoptra (User: usman)</a>
+			</div>
+			<div>
+				<a href="ws6.microlise.com/WORLDSTORES_WEB_PORTAL">Microlise (user: WORLDWEBSVC)</a> - <a
+					href="https://worldstores.sharepoint.com/IT/Lists/Run%20Books/Run%20Book%20-%20Display.aspx?ID=22&ContentTypeId=0x01007118A60289D38E45952AEC64D76B957C">RunBook</a>
+			</div>
+			<div>
+				<a href="https://worldstores.sharepoint.com/IT/_layouts/15/WopiFrame.aspx?sourcedoc={19877685-4EFE-4BD1-8CCB-42177BA48FBE}&file=System%20Team%20Applications.xlsx&action=default">WASP
+					Servers</a>
+			</div>
+			<div>
+				<a href="http://www.adminservices.achica.com:9842/">Achica Admin</a>
+			</div>
+			<div>
+				<a href="http://80.79.128.146/">Feeds Dir</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-10 col-sm-offset-1">
+		<div class="panel panel-success">
+			<div class="panel-heading repository_dropdown">
+				<h2 class="panel-title panel-title">HPS</h2>
+			</div>
+			<div class="panel-body" id="Limbo">
+				<form accept-charset="UTF-8" action="/hps.php" class="new_user" id="new_user" method="get"
+					  target="_blank">
+					<div class="form-group">
+						<label for="ref">Transaction ID</label>
+						<input class="form-control" id="ref" name="ref" type="int">
+					</div>
+					<div class="form-group">
+						<label for="vtid">Account</label>
+						<select class="form-control" id="vtid" name="vtid">
+							<option value="21860306">WS - 21860306</option>
+							<option value="21860568">WS Mobile - 21860568</option>
+							<option value="21860952">KC - 21860952</option>
+						</select>
+					</div>
+					<input class="btn btn-default" name="commit" type="submit" value="Submit">
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- LIVE CENTRAL ADMIN -->
+<?php
+if (isset($top_livesites) && count($top_livesites) > 0) {
+	?>
+	<div class="row">
+		<div class="col-md-10 col-sm-offset-1">
 			<div class="panel panel-success">
-				<div class="panel-heading repository_dropdown">
-					<h2 class="panel-title panel-title">HPS</h2>
+				<div class="panel-heading repository_dropdown" controls_panel="liveCA">
+					<h2 class="panel-title panel-title"><b>**LIVE Central Admin**</b></h2>
 				</div>
-				<div class="panel-body" id="Limbo">
-					<form accept-charset="UTF-8" action="/hps.php" class="new_user" id="new_user" method="get" target="_blank">
-					  <div class="form-group">
-					    <label for="ref">Transaction ID</label>
-					    <input class="form-control" id="ref" name="ref" type="int">
-					  </div>
-					  <div class="form-group">
-					    <label for="vtid">Account</label>
-					    <select class="form-control" id="vtid" name="vtid">
-						    <option value="21860306">WS - 21860306</option>
-						    <option value="21860568">WS Mobile - 21860568</option>
-						    <option value="21860952">KC - 21860952</option>
-						  </select>
-					  </div>
-					  <input class="btn btn-default" name="commit" type="submit" value="Submit">
-					</form>
-				</div>
-			</div>
-			</div>
-		</div>
-		<!-- LIVE CENTRAL ADMIN -->
-		<?php
-		if (isset($top_livesites) && count($top_livesites) > 0)
-		{
-		?>
-		<div class="row">
-			<div class="col-md-10 col-sm-offset-1">
-				<div class="panel panel-success">
-					<div class="panel-heading repository_dropdown" controls_panel="liveCA">
-						<h2 class="panel-title panel-title"><b>**LIVE Central Admin**</b></h2>
-					</div>
-					<div class="panel-body" id="liveCA">
+				<div class="panel-body" id="liveCA">
 
-				  		<!-- Table -->
-						<table class="table table-bordered table-striped">
-							<thead>
-								<tr>
-									<th>Site</th>
-									<th>Admin</th>
-									<th>Repo</th>
-								</tr>
-							</thead>
-							<tbody>
-							<?php
-							$i = 0;
-							foreach($top_livesites as $top_livesite)
-							{
-								$s = $key = key((array)$top_livesite);
-								$l_site = $top_livesite->$s;
-								$i++;
+					<!-- Table -->
+					<table class="table table-bordered table-striped">
+						<thead>
+						<tr>
+							<th>Site</th>
+							<th>Admin</th>
+							<th>Repo</th>
+						</tr>
+						</thead>
+						<tbody>
+						<?php
+						$i = 0;
+						foreach ($top_livesites as $top_livesite) {
+							$s      = $key = key((array)$top_livesite);
+							$l_site = $top_livesite->$s;
+							$i++;
 							?>
-								<tr>
-									<form method="POST" name="admin_form_1_<?php echo $i;?>" action="https://<?php echo $l_site->url;?>/admin/admin_login.php" target="_blank">
-										<input type="hidden" name="login" value="admin">
-										<input type="hidden" name="subuser" value="<?php echo (isset($l_site->sub_user) ? $l_site->sub_user : $sub_user );?>">
-										<input type="hidden" name="password" value="<?php echo (isset($l_site->sub_pass) ? $l_site->sub_pass : $sub_pass );?>">
-										<input type="hidden" name="website_id" value="<?php echo $l_site->website_id;?>">
-										<input type="hidden" name="return_page" value="/admin/admin_login.php">
-										<input type="hidden" name="operation" value="login">
-										<td class="title">
-											<?php echo $s;?>
-										</td>
-										<td class="admin">
-											<a href="#" target="_blank" onclick="document.forms['admin_form_1_<?php echo $i;?>'].submit();return false;">**ADMIN**</a>
-										</td>
-										<td class="branch">
-											<span>http://svn.worldstores.co.uk/centraladmin/trunk</span>
-										</td>
-									</form>
-								</tr>
+							<tr>
+								<form method="POST" name="admin_form_1_<?php echo $i; ?>"
+									  action="https://<?php echo $l_site->url; ?>/admin/admin_login.php"
+									  target="_blank">
+									<input type="hidden" name="login" value="admin">
+									<input type="hidden" name="subuser"
+										   value="<?php echo(isset($l_site->sub_user) ? $l_site->sub_user : $sub_user); ?>">
+									<input type="hidden" name="password"
+										   value="<?php echo(isset($l_site->sub_pass) ? $l_site->sub_pass : $sub_pass); ?>">
+									<input type="hidden" name="website_id" value="<?php echo $l_site->website_id; ?>">
+									<input type="hidden" name="return_page" value="/admin/admin_login.php">
+									<input type="hidden" name="operation" value="login">
+									<td class="title">
+										<?php echo $s; ?>
+									</td>
+									<td class="admin">
+										<a href="#" target="_blank"
+										   onclick="document.forms['admin_form_1_<?php echo $i; ?>'].submit();return false;">**ADMIN**</a>
+									</td>
+									<td class="branch">
+										<span>http://svn.worldstores.co.uk/centraladmin/trunk</span>
+									</td>
+								</form>
+							</tr>
 							<?php
-							}
-							?>
-							</tbody>
-						</table>
-					</div>
+						}
+						?>
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>
-		<?php
-		}
+	</div>
+	<?php
+}
 
-		if (isset($livesites) && count($livesites) > 0)
-		{
-		?>
+if (isset($livesites) && count($livesites) > 0) {
+	?>
 
-		<!-- LIVE SITES -->
-		<div class="row">
-			<div class="col-md-10 col-sm-offset-1">
-				<div class="panel panel-success">
-					<div class="panel-heading repository_dropdown" controls_panel="liveCA">
-						<h2 class="panel-title panel-title">**LIVE**</h2>
-					</div>
-					<div class="panel-body" id="liveCA">
+	<!-- LIVE SITES -->
+	<div class="row">
+		<div class="col-md-10 col-sm-offset-1">
+			<div class="panel panel-success">
+				<div class="panel-heading repository_dropdown" controls_panel="liveCA">
+					<h2 class="panel-title panel-title">**LIVE**</h2>
+				</div>
+				<div class="panel-body" id="liveCA">
 
-				  		<!-- Table -->
-						<table class="table table-bordered table-striped">
-							<thead>
-								<tr>
-									<th>Site</th>
-									<th>Admin</th>
-									<th>Repo [<span class='toggel_server_info'>more</span>]</th>
-								</tr>
-							</thead>
-							<tbody>
-							<?php
-							$i = 0;
-							foreach($livesites as $key=>$livesite)
-							{
+					<!-- Table -->
+					<table class="table table-bordered table-striped">
+						<thead>
+						<tr>
+							<th>Site</th>
+							<th>Admin</th>
+							<th>Repo [<span class='toggel_server_info'>more</span>]</th>
+						</tr>
+						</thead>
+						<tbody>
+						<?php
+						$i = 0;
+						foreach ($livesites as $key => $livesite) {
 
-								$s = $k = key((array)$livesite);
-								$l_site = $livesite->$s;
-								$site_tag_url = $livesite->$s->repo . '/commits/tag/';
-								$server_list = (array)$livesite->$s->server;
-								$other_server_list = isset($livesite->$s->other_info) ? (array)$livesite->$s->other_info : array();
-								
-								$server_info = '';
-								$i++;
+							$s                 = $k = key((array)$livesite);
+							$l_site            = $livesite->$s;
+							$site_tag_url      = $livesite->$s->repo . '/commits/tag/';
+							$server_list       = (array)$livesite->$s->server;
+							$other_server_list = isset($livesite->$s->other_info) ? (array)$livesite->$s->other_info : [];
+
+							$server_info = '';
+							$i++;
 							?>
-								<tr>
-									<form method="POST" name="admin_livesite_form_1_<?php echo $i;?>" action="https://<?php echo $l_site->url;?>/admin/admin_login.php" target="_blank">
-										<input type="hidden" name="login" value="admin">
-										<input type="hidden" name="subuser" value="<?php echo (isset($l_site->sub_user) ? $l_site->sub_user : $sub_user );?>">
-										<input type="hidden" name="password" value="<?php echo (isset($l_site->sub_pass) ? $l_site->sub_pass : $sub_pass );?>">
-										<input type="hidden" name="website_id" value="<?php echo $l_site->website_id;?>">
-										<input type="hidden" name="return_page" value="/admin/admin_login.php">
-										<input type="hidden" name="operation" value="login">
-										<td class="title">
-											<a href="http://<?php echo $l_site->url;?>" target="_new"><?php echo $s;?></a> [<?php echo $livesite->$s->order_prefix;?>:<?php echo $livesite->$s->website_id;?>]
-										</td>
-										<td class="admin">
-											<a href="#" target="_blank" onclick="document.forms['admin_livesite_form_1_<?php echo $i;?>'].submit();return false;">**ADMIN**</a>
-										</td>
-										<td class="branch">
+							<tr>
+								<form method="POST" name="admin_livesite_form_1_<?php echo $i; ?>"
+									  action="https://<?php echo $l_site->url; ?>/admin/admin_login.php"
+									  target="_blank">
+									<input type="hidden" name="login" value="admin">
+									<input type="hidden" name="subuser"
+										   value="<?php echo(isset($l_site->sub_user) ? $l_site->sub_user : $sub_user); ?>">
+									<input type="hidden" name="password"
+										   value="<?php echo(isset($l_site->sub_pass) ? $l_site->sub_pass : $sub_pass); ?>">
+									<input type="hidden" name="website_id" value="<?php echo $l_site->website_id; ?>">
+									<input type="hidden" name="return_page" value="/admin/admin_login.php">
+									<input type="hidden" name="operation" value="login">
+									<td class="title">
+										<a href="http://<?php echo $l_site->url; ?>"
+										   target="_new"><?php echo $s; ?></a> <?php echo ($livesite->$s->website_id >
+											0) ? '[' . $livesite->$s->order_prefix . ':' . $livesite->$s->website_id .
+											']' : ''; ?>
+									</td>
+									<td class="admin">
+										<a href="#" target="_blank"
+										   onclick="document.forms['admin_livesite_form_1_<?php echo $i; ?>'].submit();return false;">**ADMIN**</a>
+									</td>
+									<td class="branch">
 											
 
 											<span><ul>
 											<?php
-												foreach ($server_list as $s_k => $server) {
-											?>
+											foreach ($server_list as $s_k => $server) {
+												?>
 												<li>
-													<b><?php echo $s_k;?></b>: (<?php echo $server->name;?>)
+													<b><?php echo $s_k; ?></b>: (<?php echo $server->name; ?>)
 													<?php
-														if(isset($site_branches[$s_k])) {
-													?>
-													<small><b>Branch:</b> <u><?php echo $site_branches[$s_k];?></u>
-													<b>Tag:</b><a href="<?php echo $site_tag_url.$site_tags[$s_k];?>" target="_new"><?php echo $site_tags[$s_k];?></a></small>
-													<?php
-														}
+													if (isset($site_branches[$s_k])) {
+														?>
+														<small><b>Branch:</b> <u><?php echo $site_branches[$s_k]; ?></u>
+													<b>Tag:</b><a href="<?php echo $site_tag_url . $site_tags[$s_k]; ?>"
+																  target="_new"><?php echo $site_tags[$s_k]; ?></a></small>
+														<?php
+													}
 													?>
 													<ul>
 														<li style="display:none;" class="server_info">
-															<b>Webpark:</b> <?php echo $server->webpark;?> 
-															<b>Internal IP:</b> <?php echo $server->ip->internal;?> 
-															<b>External IP:</b> <?php echo $server->ip->external;?>
+															<b>Webpark:</b> <?php echo $server->webpark; ?>
+															<b>Internal IP:</b> <?php echo $server->ip->internal; ?>
+															<b>External IP:</b> <?php echo $server->ip->external; ?>
 														</li>
 													</ul>
 												</li>
 
-											<?php
-												}
-												if(count($other_server_list)>0){
-													echo '<p>&nbsp;</p>';
-												}
-												foreach ($other_server_list as $s_k => $server) {
-											?>
+												<?php
+											}
+											if (count($other_server_list) > 0) {
+												echo '<p>&nbsp;</p>';
+											}
+											foreach ($other_server_list as $s_k => $server) {
+												?>
 												<li style="display:none;" class="server_info">
-													*** <b><i><?php echo $s_k;?></i></b>: (<?php echo $server->name;?>)
+													*** <b><i><?php echo $s_k; ?></i></b>: (<?php echo $server->name; ?>
+													)
 													
 													<ul>
 														<li>
-															<b>Webpark:</b> <?php echo $server->webpark;?> 
-															<b>Internal IP:</b> <?php echo $server->ip->internal;?> 
-															<b>External IP:</b> <?php echo $server->ip->external;?>
+															<b>Webpark:</b> <?php echo $server->webpark; ?>
+															<b>Internal IP:</b> <?php echo $server->ip->internal; ?>
+															<b>External IP:</b> <?php echo $server->ip->external; ?>
 														</li>
 													</ul>
 												</li>
 
-											<?php
-												}
+												<?php
+											}
 											?>
 											</ul>
 											</span>
 
 
-										</td>
-									</form>
-								</tr>
+									</td>
+								</form>
+							</tr>
 							<?php
-							}
-							?>
-							</tbody>
-						</table>
-					</div>
+						}
+						?>
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>
-		<?php
-		}
-		?>
-		
-		
-		
-	</body>
+	</div>
+	<?php
+}
+?>
+
+
+</body>
 </html>

@@ -1,0 +1,49 @@
+ * { margin: 0; padding: 0; }
+        body { font-family: arial,sans-serif; font-size: 14px; font-weight:500; line-height: 24px; background: url(images/noise.jpg); }
+        .clear { clear: both; }
+        #page-wrap { width: 800px; margin: 40px auto 60px; }
+        #pic { float: right; margin: -30px 0 0 0; }
+        h1 { margin: 0 0 16px 0; padding: 0 0 16px 0; font-size: 42px; font-weight: bold; letter-spacing: -2px; border-bottom: 1px solid #999; }
+		img{ border: 0; }
+        h2 { font-size: 20px; margin: 0 0 6px 0; position: relative; }
+        h2 span { position: absolute; bottom: 0; right: 0; font-style: italic; color: #999; font-weight: normal; }
+        p { margin: 0 0 0 0; }
+        a { color: #000000; text-decoration: none;  }
+        a:hover { text-decoration: underline; color: #999; }
+        ul { margin: 0 0 32px 17px; }
+        #objective { width: 500px; float: left; }
+        #objective p {  font-style: italic; color: #666; }
+        dt { font-style: italic; font-weight: bold; font-size: 18px; text-align: right; padding: 0 26px 0 0; width: 150px; float: left; height: 100px; border-right: 1px solid #999;  }
+        dd { width: 600px; float: right; }
+        dd.clear { float: none; margin: 0; height: 15px; }
+		.quote{
+			margin: 10px 40px 10px 40px; 
+			color: #333;
+			background-color:#EFEFEF;
+			border:1px dashed gray;
+			padding: 10px;
+		}
+		.quote a{
+			text-decoration: underline;
+			color:#3399FF;
+			font-style: italic;
+		}
+		hr{ margin: 5px 0px 5px 0px; border: 1px solid #cccccc; line-height: 1px; }
+		span.step_title{
+			font-style: italic;
+			font-weight: bold;
+		}
+		table#options {
+			border-top: 1px solid #ccc;
+			border-left: 1px solid #ccc;
+		}
+		table#options th{ background: #d8ea99; }
+		
+		table#options td,table#options th{
+			border-bottom: 1px solid #ccc;
+			border-right: 1px solid #ccc;
+			padding: 5px;
+		}
+		table#options .quote{
+			margin: 10px 10px 10px 10px; 
+		}
